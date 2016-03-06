@@ -9,7 +9,7 @@
 * `$cd linkNoter`
 * `$composer install`
 * `$php artisan migrate`
-* Browse [https://linkNoter.app](https://linkNoter.app)
+* Browse [https://linkNoter.app](https://linkNoter.app) on your host machine
 
 # Technologies
 * Programing language : [Php](http://php.net)
