@@ -26,9 +26,9 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/', function () {
     	return view('welcome');
 	});
-	Route::get('/links', function () {
+	Route::get('/links', ['middleware' => 'auth', function () {
     	return view('links');
-	});
+	}]);
 
 	// Authentication Routes...
 	Route::auth();
