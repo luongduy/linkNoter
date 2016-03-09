@@ -1,0 +1,32 @@
+.dropdown-menu .container-fluid{
+    width: 600px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#saveLinkButton {
+    float:right;
+}
+
+.voteLabel {
+    display:inline;
+    text-align: center;
+}
+.voteButton {
+    border-width: 0px;
+    padding:0px;
+}
+.tagButton {
+    border-width: 0px;
+    padding:0px 6px;
+}
+.tagLabel {
+    margin-right: 5px;
+}
+.linkHr{
+    margin:2px 0px 0px 0px;
+}
+.numberOfViewLabel {
+    float: right;
+    padding-top: 4px;
+}
