@@ -29,6 +29,11 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/links', ['middleware' => 'auth', function () {
     	return view('links');
 	}]);
+    Route::get('/categories', [
+        'middleware' => 'auth',
+        'uses' => 'CategoryController@index',
+    ]);
+
 
 	// Authentication Routes...
 	Route::auth();
