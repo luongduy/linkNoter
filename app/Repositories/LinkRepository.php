@@ -20,6 +20,6 @@ class LinkRepository
                     ->get();
     }
     public function getAllLinks() {
-        return Link::all();
+        return Link::orderBy('created_at', 'desc')->get();
     }
 }
