@@ -26,9 +26,8 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/', function () {
     	return view('welcome');
 	});
-	Route::get('/links', ['middleware' => 'auth', function () {
-    	return view('links');
-	}]);
+	Route::get('/links', 'LinkController@index');
+	Route::post('/links', 'LinkController@store');
 
 	// Authentication Routes...
 	Route::auth();

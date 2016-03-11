@@ -6,7 +6,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-	public function link() {
+	public function links() {
 		return $this->hasMany('App\Link');
 	}
 	public function category() {

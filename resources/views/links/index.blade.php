@@ -1,11 +1,13 @@
 
 @extends('layouts.app')
+
 @section('content')
 <div class="container-fluid">
     <div class="row">
         <div class = "col-sm-5">
             <div class = "input-group">
                <input id="searchTextbox" type = "text" class = "form-control" placeholder="Search">
+               
                <span class = "input-group-btn">
                   <button class = "btn btn-default" type = "button">
                      <span class="glyphicon glyphicon-search"></span>
@@ -20,45 +22,41 @@
                 <ul class="dropdown-menu" role="menu">
                     <li>
                         <div class="container-fluid">
-                            <form id="saveLinkForm" action="{{ url('links') }}" method="POST">
-                                {!! csrf_field() !!}
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="addTextbox" placeholder="Paste your link here ...">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="addTextbox" placeholder="Paste your link here ...">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row"> 
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <div class = "input-group">
+                                        <input type="text" class="form-control" id="addTextbox" placeholder="Tag ...">
+                                        <span class = "input-group-btn">
+                                            <button id="tagAddButton" class = "btn btn-default" type = "button">
+                                                <span class="glyphicon glyphicon-plus-sign"></span>
+                                             </button>
+                                        </span>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row"> 
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <div class = "input-group">
-                                                <input type="text" class="form-control" id="tagTextbox" placeholder="Tag ...">
-                                                <span class = "input-group-btn">
-                                                    <button id="addTagButton" class="btn btn-default"> ADD
-                                                        <span class="glyphicon glyphicon-plus-sign"></span>
-                                                     </button>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4"> 
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <button id="saveLinkButton" class="btn btn-info"><span class="glyphicon glyphicon-save"></span>&nbsp Save</button>
-                                        </div>
+                                <div class="col-sm-4"> 
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <button id="saveLinkButton" class="btn btn-info"><span class="glyphicon glyphicon-save"></span>&nbsp Save</button>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div id="labelDiv" class="col-sm-12">
-                                        <label class="label label-info tagLabel"> css </label>
-                                        <label class="label label-info tagLabel"> java </label>
-                                    </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <label class="label label-info tagLabel"> css </label>
+                                    <label class="label label-info tagLabel"> java </label>
                                 </div>
-                                <input type="hidden" name="tags" value=""> </input>
-                            </form>
-                        </div>
+                            </div>
                     </li>
                 </ul>
             </div>
@@ -93,7 +91,7 @@
         <div class="col-sm-11">
             <br />
             <a href="http://www.w3schools.com/bootstrap/bootstrap_ref_comp_glyphs.asp">http://www.w3schools.com/bootstrap/bootstrap_ref_comp_glyphs.asp</a>
-            <label class="label label-warning numberOfViewLabel"> 1234 views</label>
+            <label class="label label-warning numberOfViewLabel" style="float: right;"> 1234 views</label>
             <br />
             <button class = "btn btn-info tagButton">
                     css

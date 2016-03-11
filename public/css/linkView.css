@@ -30,3 +30,7 @@
     float: right;
     padding-top: 4px;
 }
+.glyphicon-plus-sign {
+
+    pointer-events:none;
+}
