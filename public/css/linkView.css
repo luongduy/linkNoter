@@ -24,7 +24,8 @@
     margin-right: 5px;
 }
 .linkHr{
-    margin:2px 0px 0px 0px;
+    margin:2px 0px 2px 0px;
+    border-color:gray;
 }
 .numberOfViewLabel {
     float: right;

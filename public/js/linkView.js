@@ -3,9 +3,12 @@ $(document).ready(function() {
 	$('.dropdown-menu').click(function(e) {
     	e.stopPropagation();
 	});
+	// reset saveLinkFrom
+	$(".dropdown-toggle").click(function(e){
+        clearSaveLinkForm();
+    });
 	// adding click event to addTagButton
 	$("#addTagButton").click(function (e) {
-		console.log("clicked");
 		addTag();
 	});
 	// adding click event to the saveLinkButton
@@ -17,24 +20,23 @@ $(document).ready(function() {
 function addTag() {
 	var tags = $("#tags").val();
 	var newTag = $("#tagTextbox").val();
-	console.log(newTag);
 	if (newTag != "") {
-		tags = tags + "," + newTag;
-		var tagLabel = $("<label>").attr("class", "label label-info tagLabel").val(newTag);
+		tags = tags + newTag + ",";
+		var tagLabel = $("<label> </label>").attr("class", "label label-info tagLabel").text(newTag);
 		$("#labelDiv").append(tagLabel);
 	}
 	$("#tags").val(tags);
 }
 
-function saveLink() {
-	var href = $("#addTextbox").val();
-	var title = "testTitle";
-	console.log(href);
-	// adding title input to the form
-	var titleInput = $("<input>")
-               .attr("type", "hidden")
-               .attr("name", "title").val(title);
-	$('#saveLinkForm').append($(titleInput));
-	// submit the form
-	//$("#saveLinkForm").submit();
+function clearSaveLinkForm() {
+	$("#addTextbox").val("");
+	$("#tagTextbox").val("");
+	$("#tags").val("");
+	$("#labelDiv").empty();
 }
+
+function saveLink() {
+	// submit the form
+	$("#saveLinkForm").submit();
+}
+

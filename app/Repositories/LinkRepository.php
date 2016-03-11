@@ -19,4 +19,7 @@ class LinkRepository
                     ->orderBy('created_at', 'asc')
                     ->get();
     }
+    public function getAllLinks() {
+        return Link::all();
+    }
 }

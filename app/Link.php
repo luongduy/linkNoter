@@ -12,6 +12,12 @@ class Link extends Model
 	public function tags() {
 		return $this->belongsToMany('App\Tag');
 	}
-
-    //
+	/**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'title', 'href','voted','viewed'
+    ];
 }

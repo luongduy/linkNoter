@@ -14,6 +14,10 @@ class CreateLinkTagTable extends Migration
     {
         Schema::create('link_tag', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('link_id')->unsigned();
+            $table->integer('tag_id')->unsigned();
+            $table->foreign('link_id')->references('id')->on('links')->onDelete('cascade');
+            $table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade');
             $table->timestamps();
         });
     }
