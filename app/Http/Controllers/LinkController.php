@@ -35,7 +35,7 @@ class LinkController extends Controller
         	'viewed' => 0,
  		]);
  		// save the tags to database
-    	$tagArr = explode(',', $request->tags);
+    	$tagArr = array_unique(explode(',', $request->tags));
     	foreach ($tagArr as $tagString) {
     		if ($tagString != ""){
     			$existedTag = $this->tags->getTagByName($tagString);	
