@@ -85,7 +85,9 @@
     <!-- JavaScripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="{!! asset('js/common.js') !!}"></script>
     <script src="{!! asset('js/linkView.js') !!}"></script>
+    <script src="{!! asset('js/category.js') !!}"></script>
     <script src="{!! asset('js/notify.js') !!}"></script>
     <script src="{!! asset('js/notify.min.js') !!}"></script>
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}

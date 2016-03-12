@@ -14,14 +14,19 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $created_at
  * @property string $updated_at
  */
-
 class Category extends Model
 {
-	public function user() {
-		return $this->belongsTo('App\User');
-	}
-	public function note() {
-		return $this->hasMany('App\Note');
-	}
-    //
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
+    public function notes()
+    {
+        return $this->hasMany('App\Note');
+    }
+
+    protected $fillable = [
+        'name'
+    ];
 }
