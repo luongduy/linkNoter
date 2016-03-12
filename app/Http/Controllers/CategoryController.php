@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
-use App\Note;
 use App\Repositories\CategoryRepository;
 use App\Repositories\NoteRepository;
 use Illuminate\Http\Request;

@@ -2,19 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1746661f-edd5-4d9d-b503-6cb3992db98c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Repositories/CategoryRepository.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Repositories/NoteRepository.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/category.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/common.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Category.php" afterPath="$PROJECT_DIR$/app/Category.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Note.php" afterPath="$PROJECT_DIR$/app/Note.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/User.php" afterPath="$PROJECT_DIR$/app/User.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/categories/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/categories/index.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/category.js" afterPath="$PROJECT_DIR$/public/js/category.js" />
     </list>
     <ignored path="linkNoter.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -46,14 +35,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CategoryController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CategoryController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CategoryController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="3.6363637">
-              <caret line="80" column="0" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
-              <folding>
-                <element signature="e#40#57#0#PHP" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="-3.1666667">
+              <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -691,8 +678,8 @@
       <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/categories/index.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.458333">
-              <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+            <state vertical-scroll-proportion="-10.291667">
+              <caret line="28" column="86" selection-start-line="28" selection-start-column="79" selection-end-line="28" selection-end-column="86" />
               <folding>
                 <element signature="e#1522#1541#0#HTML" expanded="true" />
               </folding>
@@ -700,11 +687,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="category.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="category.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/js/category.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="8" column="39" selection-start-line="8" selection-start-column="39" selection-end-line="8" selection-end-column="39" />
+            <state vertical-scroll-proportion="0.44281524">
+              <caret line="20" column="41" selection-start-line="20" selection-start-column="41" selection-end-line="20" selection-end-column="41" />
               <folding>
                 <element signature="n#!!doc;n#Category#0" expanded="false" />
               </folding>
@@ -731,7 +718,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/.env" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Foundation/Auth/RegistersUsers.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/NoteController.php" />
         <option value="$PROJECT_DIR$/resources/views/note/mynote.blade.php" />
@@ -747,12 +733,13 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/Controller.php" />
         <option value="$PROJECT_DIR$/app/Category.php" />
         <option value="$PROJECT_DIR$/app/User.php" />
-        <option value="$PROJECT_DIR$/public/js/category.js" />
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
         <option value="$PROJECT_DIR$/resources/views/categories/index.blade.php" />
         <option value="$PROJECT_DIR$/app/Note.php" />
         <option value="$PROJECT_DIR$/app/Repositories/CategoryRepository.php" />
+        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" />
+        <option value="$PROJECT_DIR$/public/js/category.js" />
       </list>
     </option>
   </component>
@@ -954,7 +941,7 @@
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26171243" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32876712" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32876712" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -994,6 +981,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1008,6 +996,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-8.708333">
           <caret line="11" column="20" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1015,6 +1004,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5775076">
           <caret line="36" column="33" selection-start-line="36" selection-start-column="33" selection-end-line="36" selection-end-column="33" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1029,6 +1019,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="30" column="35" selection-start-line="30" selection-start-column="35" selection-end-line="30" selection-end-column="35" />
+          <folding>
+            <element signature="e#45#58#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1036,6 +1029,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-51.458332">
           <caret line="169" column="6" selection-start-line="169" selection-start-column="6" selection-end-line="169" selection-end-column="6" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1043,13 +1037,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.7916667">
           <caret line="23" column="6" selection-start-line="23" selection-start-column="6" selection-end-line="23" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.8636364">
-          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1058,6 +1045,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3611111">
           <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1078,6 +1066,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.35083532">
           <caret line="487" column="101" selection-start-line="487" selection-start-column="101" selection-end-line="487" selection-end-column="101" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1085,6 +1074,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.018237082">
           <caret line="19" column="36" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="36" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1348,6 +1338,71 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.17325228">
           <caret line="7" column="34" selection-start-line="7" selection-start-column="34" selection-end-line="7" selection-end-column="34" />
+          <folding>
+            <element signature="e#176#349#0#PHP" expanded="false" />
+            <element signature="e#354#641#0#PHP" expanded="false" />
+            <element signature="e#412#485#0#PHP" expanded="false" />
+            <element signature="e#502#634#0#PHP" expanded="false" />
+            <element signature="e#527#623#1#PHP" expanded="false" />
+            <element signature="e#647#775#0#PHP" expanded="false" />
+            <element signature="e#780#1135#0#PHP" expanded="false" />
+            <element signature="e#827#1106#0#PHP" expanded="false" />
+            <element signature="e#870#958#0#PHP" expanded="false" />
+            <element signature="e#1141#1246#0#PHP" expanded="false" />
+            <element signature="e#1251#1344#0#PHP" expanded="false" />
+            <element signature="e#1350#1496#0#PHP" expanded="false" />
+            <element signature="e#1501#1931#0#PHP" expanded="false" />
+            <element signature="e#1561#1649#0#PHP" expanded="false" />
+            <element signature="e#1659#1745#0#PHP" expanded="false" />
+            <element signature="e#1825#1924#0#PHP" expanded="false" />
+            <element signature="e#1842#1923#2#PHP" expanded="false" />
+            <element signature="e#1937#2014#0#PHP" expanded="false" />
+            <element signature="e#2019#2158#0#PHP" expanded="false" />
+            <element signature="e#2068#2151#0#PHP" expanded="false" />
+            <element signature="e#2078#2136#1#PHP" expanded="false" />
+            <element signature="e#2164#2296#0#PHP" expanded="false" />
+            <element signature="e#2301#2540#0#PHP" expanded="false" />
+            <element signature="e#2392#2479#0#PHP" expanded="false" />
+            <element signature="e#2546#2677#0#PHP" expanded="false" />
+            <element signature="e#2682#2985#0#PHP" expanded="false" />
+            <element signature="e#2807#2956#0#PHP" expanded="false" />
+            <element signature="e#2853#2946#0#PHP" expanded="false" />
+            <element signature="e#2991#3127#0#PHP" expanded="false" />
+            <element signature="e#3132#3453#0#PHP" expanded="false" />
+            <element signature="e#3267#3419#0#PHP" expanded="false" />
+            <element signature="e#3313#3409#0#PHP" expanded="false" />
+            <element signature="e#3459#3594#0#PHP" expanded="false" />
+            <element signature="e#3599#3794#0#PHP" expanded="false" />
+            <element signature="e#3649#3722#0#PHP" expanded="false" />
+            <element signature="e#3800#3944#0#PHP" expanded="false" />
+            <element signature="e#3949#4107#0#PHP" expanded="false" />
+            <element signature="e#4113#4264#0#PHP" expanded="false" />
+            <element signature="e#4269#4431#0#PHP" expanded="false" />
+            <element signature="e#4437#4607#0#PHP" expanded="false" />
+            <element signature="e#4612#4803#0#PHP" expanded="false" />
+            <element signature="e#4667#4773#0#PHP" expanded="false" />
+            <element signature="e#4679#4772#2#PHP" expanded="false" />
+            <element signature="e#4809#5063#0#PHP" expanded="false" />
+            <element signature="e#5068#5167#0#PHP" expanded="false" />
+            <element signature="e#5173#5306#0#PHP" expanded="false" />
+            <element signature="e#5311#5581#0#PHP" expanded="false" />
+            <element signature="e#5456#5546#0#PHP" expanded="false" />
+            <element signature="e#5587#5678#0#PHP" expanded="false" />
+            <element signature="e#5684#5863#0#PHP" expanded="false" />
+            <element signature="e#5868#5975#0#PHP" expanded="false" />
+            <element signature="e#5981#6090#0#PHP" expanded="false" />
+            <element signature="e#6095#6169#0#PHP" expanded="false" />
+            <element signature="e#6175#6330#0#PHP" expanded="false" />
+            <element signature="e#6335#6454#0#PHP" expanded="false" />
+            <element signature="e#6460#6585#0#PHP" expanded="false" />
+            <element signature="e#6590#6672#0#PHP" expanded="false" />
+            <element signature="e#6678#6830#0#PHP" expanded="false" />
+            <element signature="e#6835#6933#0#PHP" expanded="false" />
+            <element signature="e#6939#7044#0#PHP" expanded="false" />
+            <element signature="e#7049#7123#0#PHP" expanded="false" />
+            <element signature="e#7129#7261#0#PHP" expanded="false" />
+            <element signature="e#7266#7351#0#PHP" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1536,16 +1591,6 @@
         <state vertical-scroll-proportion="-5.5416665">
           <caret line="31" column="30" selection-start-line="31" selection-start-column="30" selection-end-line="31" selection-end-column="30" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/category.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="39" selection-start-line="8" selection-start-column="39" selection-end-line="8" selection-end-column="39" />
-          <folding>
-            <element signature="n#!!doc;n#Category#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2177,22 +2222,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.39175257">
+          <caret line="6" column="7" selection-start-line="6" selection-start-column="7" selection-end-line="6" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CategoryController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.1666667">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/categories/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.458333">
-          <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+        <state vertical-scroll-proportion="-10.291667">
+          <caret line="28" column="86" selection-start-line="28" selection-start-column="79" selection-end-line="28" selection-end-column="86" />
           <folding>
             <element signature="e#1522#1541#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CategoryController.php">
+    <entry file="file://$PROJECT_DIR$/public/js/category.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="3.6363637">
-          <caret line="80" column="0" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.44281524">
+          <caret line="20" column="41" selection-start-line="20" selection-start-column="41" selection-end-line="20" selection-end-column="41" />
           <folding>
-            <element signature="e#40#57#0#PHP" expanded="true" />
+            <element signature="n#!!doc;n#Category#0" expanded="false" />
           </folding>
         </state>
       </provider>

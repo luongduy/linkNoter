@@ -8,7 +8,8 @@ function Category() {
     this.init = function() {
         _scope.on('click', '#submitNote', function() {
             var _title = $('#newNoteTitle');
-            if (_title.val().length == 0) {
+            var _content = $('#newNote');
+            if (!_title.val()) {
                 _title.focus().notify("Fill some text", {
                     position: "top left",
                     className: "error"
@@ -16,8 +17,8 @@ function Category() {
                 return false;
             }
 
-            if (_title.val().length == 0) {
-                _title.focus().notify("Fill some text", {
+            if (!_content.val()) {
+                _content.focus().notify("Fill some text", {
                     position: "top left",
                     className: "error"
                 });
