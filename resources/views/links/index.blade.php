@@ -111,5 +111,5 @@
 @endsection
 
 @section('scripts')
-    <script src="{!! asset('js/category.js') !!}"></script>
+    <script src="{!! asset('js/linkView.js') !!}"></script>
 @endsection
