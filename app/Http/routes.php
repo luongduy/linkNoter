@@ -31,6 +31,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/categories', 'CategoryController@index');
     Route::post('/categories/storeCategory', 'CategoryController@storeCategory');
     Route::post('/categories/storeNote', 'CategoryController@storeNote');
+    Route::get('/categories/destroy/{id}', 'CategoryController@destroy');
 
 	// Authentication Routes...
 	Route::auth();

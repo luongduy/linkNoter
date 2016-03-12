@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Repositories\CategoryRepository;
 use App\Repositories\NoteRepository;
 use Illuminate\Http\Request;
@@ -32,7 +33,7 @@ class CategoryController extends Controller
             $defaultCategory = $this->categories->forUser($request->user())
                 ->first();
             if ($defaultCategory) {
-                $selectedCId = $defaultCategory->id;
+                $selectedCId = $defaultCategory->getAttribute('id');
             }
         }
         return $selectedCId;
@@ -42,7 +43,6 @@ class CategoryController extends Controller
     {
         $categories = $this->categories->forUser($request->user())
             ->get();
-
 
         $selectedCId = $this->getCategoryIdFromRequest($request);
         $notes = NoteRepository::getInstance()
@@ -63,11 +63,12 @@ class CategoryController extends Controller
             ]
         );
 
-        $request->user()->categories()->create([
-            'name' => $request->name
+        $category = $request->user()->categories()->create([
+            'name' => $request->input('name')
         ]);
+        /** @var $category Category */
 
-        return redirect('/categories');
+        return response()->json($category->toArray());
     }
 
     public function storeNote(Request $request)
@@ -78,19 +79,31 @@ class CategoryController extends Controller
         );
 
         $categoryId = $this->getCategoryIdFromRequest($request);
+        if  (!$categoryId) {
+            return response()->json(['status' => false]);
+        }
         $category = $this->categories->findOne($categoryId);
 
-        $category->notes()->create([
+        $note = $category->notes()->create([
                 'title' => $request->input('title'),
                 'content' => $request->input('content'),
             ]);
+        $note = $note->toArray();
+        $note['status'] = true;
 
-        return redirect('/categories');
+        return response()->json($note);
     }
 
-    public function delete(Request $request)
+    public function destroy($id, Request $request)
     {
-
+        $this->notes->setUser($request->user());
+        $note = $this->notes->findOne($id);
+        if ($note) {
+            if ($note->delete()) {
+                return response()->json(['status' => true]);
+            }
+        }
+        return response()->json(['status' => false]);
     }
 
 }

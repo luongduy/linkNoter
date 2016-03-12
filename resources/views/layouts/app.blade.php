@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    <link href="{!! asset('css/linkView.css') !!}" media="all" rel="stylesheet" type="text/css" />
+    <link href="{!! asset('css/app.css') !!}" media="all" rel="stylesheet" type="text/css" />
     {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
     
     <style>
@@ -85,11 +85,12 @@
     <!-- JavaScripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script src="{!! asset('js/common.js') !!}"></script>
-    <script src="{!! asset('js/linkView.js') !!}"></script>
-    <script src="{!! asset('js/category.js') !!}"></script>
     <script src="{!! asset('js/notify.js') !!}"></script>
     <script src="{!! asset('js/notify.min.js') !!}"></script>
-    {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
+    <script src="{!! asset('js/common.js') !!}"></script>
+
+    @yield('scripts')
+
+
 </body>
 </html>

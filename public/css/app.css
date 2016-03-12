@@ -1,0 +1,97 @@
+.dropdown-menu .container-fluid {
+  width: 600px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#saveLinkButton {
+  float: right;
+}
+
+.voteLabel {
+  display: inline;
+  text-align: center;
+}
+
+.voteButton {
+  border-width: 0px;
+  padding: 0px;
+}
+
+.tagButton {
+  border-width: 0px;
+  padding: 0px 6px;
+}
+
+.tagLabel {
+  margin-right: 5px;
+}
+
+.linkHr {
+  margin: 2px 0px 2px 0px;
+  border-color: gray;
+}
+
+.numberOfViewLabel {
+  float: right;
+  padding-top: 4px;
+}
+
+.glyphicon-plus-sign {
+
+  pointer-events: none;
+}
+
+#CA .category {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-right: 5px
+}
+
+#CA .addCategory {
+  margin-left: 0;!important;
+}
+
+#CA #addNoteForm div.form-group {
+  float: left;
+}
+
+#CA #submitNote {
+  width: 10%;
+}
+
+#CA .space {
+  width: 2%;
+}
+
+#CA .title {
+  width: 18%;
+}
+
+#CA .content {
+  width: 68%;
+}
+
+#CA .listNote {
+  padding-left: 15px;float: left;
+}
+
+#CA .listNote td {
+  padding: 15px;
+}
+
+#CA .listNote td.title {
+  width: 15%;
+}
+
+#CA .listNote td.content {
+  width: 75%;
+}
+
+#CA .listNote td.action {
+  width: 10%;
+}
+
+
+
+
