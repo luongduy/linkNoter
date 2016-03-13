@@ -14,11 +14,12 @@ class CategoryController extends Controller
     protected $categories;
     protected $notes;
 
-    public function __construct()
+    public function __construct(Request $request)
     {
         $this->middleware('auth');
         $this->categories = CategoryRepository::getInstance();
         $this->notes = NoteRepository::getInstance();
+        $this->notes->setUser($request->user());
     }
 
     /**
@@ -27,33 +28,59 @@ class CategoryController extends Controller
      * @param Request $request
      * @return integer
      */
-    protected function getCategoryIdFromRequest(Request $request) {
-        $selectedCId = $request->get('c_id');
-        if (empty($selectedCId)) {
+    protected function getCategoryIdFromRequest(Request $request, &$cid) {
+        if (empty($cid)) {
             $defaultCategory = $this->categories->forUser($request->user())
                 ->first();
             if ($defaultCategory) {
-                $selectedCId = $defaultCategory->getAttribute('id');
+                $cid = $defaultCategory->getAttribute('id');
             }
         }
-        return $selectedCId;
+        return $cid;
     }
 
-    public function index(Request $request)
+    public function index(Request $request, $cid = null)
     {
         $categories = $this->categories->forUser($request->user())
             ->get();
 
-        $selectedCId = $this->getCategoryIdFromRequest($request);
+        $selectedCId = $this->getCategoryIdFromRequest($request, $cid);
         $notes = NoteRepository::getInstance()
             ->forCategory($selectedCId)
             ->get();
-
         return view('categories.index', [
-                'categories' => $categories, 'notes' => $notes,
+                'categories' => $categories, 'notes' => $notes, 'cid' => $cid
             ]
         );
 
+    }
+
+    public function editNote($id, Request $request)
+    {
+        $rMethod = $request->getMethod();
+        $note = $this->notes->findOne($id);
+        if ($note && $rMethod == 'GET') {
+            return view('categories.editNote', [
+                    'note' => $note,
+                ]
+            );
+        }
+
+        if ($request->getMethod() === 'POST') {
+            $this->validate($request, [
+                'title' => 'required|max:255', 'content' => 'required'
+            ]);
+
+            $status = $note->update([
+                'title' => $request->input('title'),
+                'content' => $request->input('content'),
+            ]);
+            if ($status) {
+                return redirect('/categories/' . $note['category_id']);
+            }
+        }
+
+        return 'Page not found';
     }
 
     public function storeCategory(Request $request)
@@ -71,14 +98,14 @@ class CategoryController extends Controller
         return response()->json($category->toArray());
     }
 
-    public function storeNote(Request $request)
+    public function storeNote(Request $request, $cid = null)
     {
         $this->validate($request, [
                 'title' => 'required|max:255', 'content' => 'required',
             ]
         );
 
-        $categoryId = $this->getCategoryIdFromRequest($request);
+        $categoryId = $this->getCategoryIdFromRequest($request, $cid);
         if  (!$categoryId) {
             return response()->json(['status' => false]);
         }
@@ -94,7 +121,7 @@ class CategoryController extends Controller
         return response()->json($note);
     }
 
-    public function destroy($id, Request $request)
+    public function destroyNote($id, Request $request)
     {
         $this->notes->setUser($request->user());
         $note = $this->notes->findOne($id);

@@ -28,10 +28,12 @@ Route::group(['middleware' => ['web']], function () {
 	});
 	Route::get('/links', 'LinkController@index');
 	Route::post('/links', 'LinkController@store');
-    Route::get('/categories', 'CategoryController@index');
+    Route::get('/categories/{cid?}', 'CategoryController@index');
     Route::post('/categories/storeCategory', 'CategoryController@storeCategory');
-    Route::post('/categories/storeNote', 'CategoryController@storeNote');
-    Route::get('/categories/destroy/{id}', 'CategoryController@destroy');
+    Route::post('/categories/storeNote/{cid?}', 'CategoryController@storeNote');
+    Route::get('/categories/editNote/{id}', 'CategoryController@editNote');
+    Route::post('/categories/editNote/{id}', 'CategoryController@editNote');
+    Route::get('/categories/destroyNote/{id}', 'CategoryController@destroyNote');
 
 	// Authentication Routes...
 	Route::auth();

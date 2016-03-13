@@ -42,6 +42,18 @@
   pointer-events: none;
 }
 
+#CA .categoryList .categoryWrap {
+  position: relative;
+  margin-right: 15px;
+}
+
+#CA .categoryList .cRemoveStyle {
+  font-size: 10px;
+  position: absolute;
+  top: -13px;
+  left: -8px;
+}
+
 #CA .category {
   margin-top: 5px;
   margin-bottom: 5px;
@@ -60,10 +72,6 @@
   width: 10%;
 }
 
-#CA .space {
-  width: 2%;
-}
-
 #CA .title {
   width: 18%;
 }
@@ -73,25 +81,15 @@
 }
 
 #CA .listNote {
-  padding-left: 15px;float: left;
+  padding-left: 15px;
 }
 
-#CA .listNote td {
-  padding: 15px;
+#CA .listNote .noteBtn {
+  font-size: 11px;
+  margin-left: 3px;
+  cursor: pointer;
 }
 
-#CA .listNote td.title {
-  width: 15%;
+#CA .listNote .noteItem {
+  margin-top: 10px;
 }
-
-#CA .listNote td.content {
-  width: 75%;
-}
-
-#CA .listNote td.action {
-  width: 10%;
-}
-
-
-
-

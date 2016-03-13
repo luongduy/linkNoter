@@ -40,7 +40,7 @@ class NoteRepository
      */
     public function forCategory($categoryId)
     {
-        return Note::query()->where('category_id', $categoryId);
+        return Note::query()->where('category_id', $categoryId)->orderBy('created_at', 'desc');
     }
 
     /**

@@ -5,7 +5,8 @@ var LinkNoter = {
     ajax: function(params) {
         if (typeof params.error === 'undefined') {
             params.error = function (xhr, textStatus, e) {
-                alert(e.statusText);
+                console.log(xhr);
+                alert(textStatus);
             };
         }
 
