@@ -19,7 +19,10 @@ class CategoryController extends Controller
         $this->middleware('auth');
         $this->categories = CategoryRepository::getInstance();
         $this->notes = NoteRepository::getInstance();
-        $this->notes->setUser($request->user());
+        $user = $request->user();
+        if ($user) {
+            $this->notes->setUser($user);
+        }
     }
 
     /**
@@ -45,7 +48,7 @@ class CategoryController extends Controller
             ->get();
 
         $selectedCId = $this->getCategoryIdFromRequest($request, $cid);
-        $notes = NoteRepository::getInstance()
+        $notes = $this->notes
             ->forCategory($selectedCId)
             ->get();
         return view('categories.index', [
@@ -57,16 +60,15 @@ class CategoryController extends Controller
 
     public function editNote($id, Request $request)
     {
-        $rMethod = $request->getMethod();
         $note = $this->notes->findOne($id);
-        if ($note && $rMethod == 'GET') {
+        if ($note && $request->isMethod('get')) {
             return view('categories.editNote', [
                     'note' => $note,
                 ]
             );
         }
 
-        if ($request->getMethod() === 'POST') {
+        if ($request->isMethod('post')) {
             $this->validate($request, [
                 'title' => 'required|max:255', 'content' => 'required'
             ]);
