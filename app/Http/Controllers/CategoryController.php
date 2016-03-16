@@ -11,6 +11,8 @@ use App\Http\Requests;
 
 class CategoryController extends Controller
 {
+    //TODO write test case
+
     protected $categories;
     protected $notes;
 
@@ -58,6 +60,37 @@ class CategoryController extends Controller
 
     }
 
+    public function storeCategory(Request $request)
+    {
+        $this->validate($request, [
+                'name' => 'required|max:255',
+            ]
+        );
+
+        $category = $request->user()->categories()->create([
+            'name' => $request->input('name')
+        ]);
+        /** @var $category Category */
+
+        return response()->json($category->toArray());
+    }
+
+    public function editCategory(Request $request)
+    {
+
+    }
+
+    public function destroyCategory(Request $request, $cid = null)
+    {
+        $category = $this->categories->forUser($request->user())->where('id', $cid)->first();
+        if ($category) {
+            if ($category->delete()) {
+                return redirect('/categories');
+            }
+        }
+        return 'Page not found';
+    }
+
     public function editNote($id, Request $request)
     {
         $note = $this->notes->findOne($id);
@@ -83,21 +116,6 @@ class CategoryController extends Controller
         }
 
         return 'Page not found';
-    }
-
-    public function storeCategory(Request $request)
-    {
-        $this->validate($request, [
-                'name' => 'required|max:255',
-            ]
-        );
-
-        $category = $request->user()->categories()->create([
-            'name' => $request->input('name')
-        ]);
-        /** @var $category Category */
-
-        return response()->json($category->toArray());
     }
 
     public function storeNote(Request $request, $cid = null)
