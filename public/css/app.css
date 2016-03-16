@@ -42,6 +42,10 @@
   pointer-events: none;
 }
 
+.tagForm {
+    display:inline!important;
+}
+
 #CA .categoryList .categoryWrap {
   position: relative;
   margin-right: 15px;

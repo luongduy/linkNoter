@@ -74,36 +74,10 @@
 </div>
 <hr>
 <div class="container-fluid">
-    @foreach ($links as $link)
-    <div class="row">
-        <div class="col-sm-1">
-            <div>
-                <button class = "btn btn-default center-block voteButton" type = "button">
-                         <span class="glyphicon glyphicon-chevron-up"></span>
-                </button> 
-            </div>
-            <div  align="center">
-                <label class="voteLabel"> {{$link->voted}} </label> <br />
-            </div>
-            <div>
-                <button class = "btn btn-default center-block voteButton" type = "button">
-                         <span class="glyphicon glyphicon-chevron-down"></span>
-                </button>
-            </div>
-        </div>
-        <div class="col-sm-11">
-            <br />
-            <a href="{{$link->href}}">{{$link->title}}</a>
-            <label class="label label-warning numberOfViewLabel"> {{$link->viewed}} views</label>
-            <br />
-            @foreach ($link->tags as $tag)
-                <a href="{{ url('links/tags/'.$tag->name) }}" class = "btn btn-info tagButton">
-                    {{$tag->name}}
-                </a>
-            @endforeach
-        </div>
-    </div>
-    <hr class="linkHr">
+    @foreach ($tags as $tag)
+        <a href="{{ url('links/tags/'.$tag->name) }}" class = "btn btn-info tagButton">
+                 {{$tag->name}}
+        </a>
     @endforeach
     <br/>
 </div>

@@ -28,6 +28,9 @@ Route::group(['middleware' => ['web']], function () {
 	});
 	Route::get('/links', 'LinkController@index');
 	Route::post('/links', 'LinkController@store');
+	Route::get('/links/tags', 'LinkController@getTags');
+	Route::get('/links/tags/{name}', 'LinkController@getTag');
+
     Route::get('/categories/{cid?}', 'CategoryController@index');
     Route::post('/categories/storeCategory', 'CategoryController@storeCategory');
     Route::post('/categories/storeNote/{cid?}', 'CategoryController@storeNote');

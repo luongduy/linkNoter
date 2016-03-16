@@ -50,6 +50,18 @@ class LinkController extends Controller
     	}
     	return redirect('/links');
 	}
+
+	public function getTag(Request $request, $tag) {
+		return view('links.index', [
+			'links' => $this->tags->getTagByName($tag)->links,
+		]);
+	}
+	public function getTags() {
+		return view('links.tags', [
+			'tags' => $this->tags->getAllTags(),
+		]);
+	}
+
     public function __construct(LinkRepository $links, TagRepository $tags) {
 	   	$this->middleware('auth');
 		$this->links = $links;
