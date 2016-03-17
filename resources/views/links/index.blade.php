@@ -93,8 +93,8 @@
         </div>
         <div class="col-sm-11">
             <br />
-            <a href="{{$link->href}}">{{$link->title}}</a>
-            <label class="label label-warning numberOfViewLabel"> {{$link->viewed}} views</label>
+            <a class="link" href="{{$link->href}}">{{$link->title}}</a>
+            <label id="{{$link->id}}" class="label label-warning numberOfViewLabel"> {{$link->viewed}} views</label>
             <br />
             @foreach ($link->tags as $tag)
                 <a href="{{ url('links/tags/'.$tag->name) }}" class = "btn btn-info tagButton">
@@ -111,5 +111,6 @@
 @endsection
 
 @section('scripts')
+    <meta name="_token" content="{{ csrf_token() }}" />
     <script src="{!! asset('js/linkView.js') !!}"></script>
 @endsection

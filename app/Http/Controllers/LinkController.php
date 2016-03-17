@@ -10,6 +10,7 @@ use App\Repositories\LinkRepository;
 use App\Repositories\TagRepository;
 use App\Util;
 use App\Tag;
+use App\Link;
 use Log;
 
 class LinkController extends Controller
@@ -62,6 +63,12 @@ class LinkController extends Controller
 		]);
 	}
 
+	public function increaseView(Request $request, Link $link) {
+		$link->viewed = $link->viewed + 1;
+		Log::info("View:".$link->viewed);
+		$link->save();	
+		return "";
+	}
     public function __construct(LinkRepository $links, TagRepository $tags) {
 	   	$this->middleware('auth');
 		$this->links = $links;

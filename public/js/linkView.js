@@ -15,6 +15,9 @@ $(document).ready(function() {
 	$("#saveLinkButton").click(function(e) {
 		saveLink();
 	});
+	$(".link").click(function(e) {
+		increaseView(e.target);
+	});
 });
 
 function addTag() {
@@ -50,6 +53,24 @@ function saveLink() {
 		console.log("invalid url");
 	}
 	
+}
+
+function increaseView(e) {
+	var parent = $(e).parent();
+	var linkId = parent.find('label').attr('id');
+	$.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            }
+        })
+	LinkNoter.ajax({
+                    url: '/links/increaseView/'+ linkId,
+                    method: 'POST',
+                    data: '',
+                    success: function (res) {
+                        location.href = $(e).attr('href');
+                    }
+                });
 }
 
 function validateURL(textval) {
