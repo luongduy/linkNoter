@@ -118,7 +118,7 @@ function Category() {
             })
             .on('click', '.categoryList .cRemove', function() {
                 if (confirm('Delete this category and all its notes ?')) {
-                    //var t = $(this);
+                    location.href = '/categories/destroyCategory/' + $(this).attr('data-id');
                 }
 
             })
