@@ -27,10 +27,9 @@ function Category() {
         return true;
     };
 
-    var _validateCategory = function () {
-        var _name = $('#newCategoryName');
-        if (!_name.val()) {
-            _name.focus().notify("Fill some text", {
+    var _validateCategory = function (inputSelector) {
+        if (!inputSelector.val()) {
+            inputSelector.focus().notify("Fill some text", {
                 position: "top left",
                 className: "error"
             });
@@ -103,7 +102,7 @@ function Category() {
                 }
             })
             .on('click', '#submitCategory', function() {
-                if (!_validateCategory()) {
+                if (!_validateCategory($('#newCategoryName'))) {
                     return false;
                 }
                 var _form = $('#addCategoryForm');
@@ -123,7 +122,15 @@ function Category() {
 
             })
         ;
-    }
+    };
+
+    $('#editCateForm').submit(function() {
+        if (!_validateCategory($('#editCateName'))) {
+            return false;
+        }
+        $(this).submit();
+    })
+
 }
 
 $(document).ready(function () {

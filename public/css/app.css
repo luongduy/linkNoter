@@ -55,7 +55,7 @@
   font-size: 10px;
   position: absolute;
   top: -13px;
-  left: -8px;
+  left: -10px;
 }
 
 #CA .category {
@@ -76,11 +76,11 @@
   width: 10%;
 }
 
-#CA .title {
+#CA #addNoteForm .title {
   width: 18%;
 }
 
-#CA .content {
+#CA #addNoteForm .content {
   width: 68%;
 }
 
@@ -96,4 +96,20 @@
 
 #CA .listNote .noteItem {
   margin-top: 10px;
+}
+
+#CA #editCateForm div.form-group {
+  float: left;
+}
+
+#CA #editCateForm .name {
+  width: 85%;
+}
+
+#CA #editCateForm #submitEditCate {
+  width: 10%;
+}
+
+#submitEditCate {
+  margin-left: 21px;
 }
