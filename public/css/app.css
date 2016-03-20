@@ -45,6 +45,9 @@
 .tagForm {
     display:inline!important;
 }
+.voted{
+  color:orange;
+}
 
 #CA .categoryList .categoryWrap {
   position: relative;
