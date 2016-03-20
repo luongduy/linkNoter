@@ -9,7 +9,7 @@
                         @if (!$categories->isEmpty())
                             @foreach ($categories as $c)
                                 <span class="categoryWrap">
-                                    <a href="{{url('/categories', ['cid' => $c->id])}}" class="category btn btn-<?php echo $c->id == $cid ? 'info' : 'default' ?>" data-id="{{$c->id}}">{{$c->name}}</a>
+                                    <a href="{{url('/categories', ['cid' => $c->id])}}" class="category btn btn-<?php echo $c->id == $currentCate->id ? 'info' : 'default' ?>" data-id="{{$c->id}}">{{$c->name}}</a>
                                     <a class="cRemove" data-id="{{$c->id}}"><i class="cRemoveStyle glyphicon glyphicon-remove"></i></a>
                                 </span>
                             @endforeach
@@ -50,11 +50,25 @@
                 </div>
             </div>
         </div>
+        
+        @if (!$categories->isEmpty())
+            <hr/>
+
+            <div class="container-fluid">
+                <form id="editCateForm" action="{{ url('categories/editCategory', ['cid' => $currentCate->id]) }}" method="POST">
+                    {!! csrf_field() !!}
+                    <div class="form-group name">
+                        <input type="text" id="editCateName" name="name" value="{{$currentCate->name}}" class="form-control col-sm-11" placeholder="Type some words">
+                    </div>
+                    <button type="submit" id="submitEditCate" class="btn btn-primary">Change</button>
+                </form>
+            </div>            
+        @endif
 
         <hr/>
 
         <div class="container-fluid">
-            <form id="addNoteForm" class="row" action="{{ url('categories/storeNote', ['cid' => $cid]) }}" method="POST">
+            <form id="addNoteForm" class="row" action="{{ url('categories/storeNote', ['cid' => $currentCate->id]) }}" method="POST">
                 {!! csrf_field() !!}
                 <div class="form-group title col-sm-2">
                     <input type="text" name="title" class="form-control" id="newNoteTitle" placeholder="New Note">
@@ -87,7 +101,6 @@
             </div>
         </div>
     </div>
-
 @endsection
 
 @section('scripts')

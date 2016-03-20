@@ -37,6 +37,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/categories/{cid?}', 'CategoryController@index');
     Route::post('/categories/storeCategory', 'CategoryController@storeCategory');
     Route::get('/categories/destroyCategory/{cid?}', 'CategoryController@destroyCategory');
+    Route::get('/categories/editCategory/{cid?}', 'CategoryController@editCategory');
+    Route::post('/categories/editCategory/{cid?}', 'CategoryController@editCategory');
     Route::post('/categories/storeNote/{cid?}', 'CategoryController@storeNote');
     Route::get('/categories/editNote/{id}', 'CategoryController@editNote');
     Route::post('/categories/editNote/{id}', 'CategoryController@editNote');

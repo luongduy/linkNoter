@@ -31,17 +31,17 @@ class CategoryController extends Controller
      * Get current notes by cate_id in uri, if not, default is first one in his categories
      *
      * @param Request $request
-     * @return integer
+     * @return Category | null
      */
-    protected function getCategoryIdFromRequest(Request $request, &$cid) {
+    protected function getCategoryFromRequest(Request $request, $cid) {
         if (empty($cid)) {
             $defaultCategory = $this->categories->forUser($request->user())
                 ->first();
             if ($defaultCategory) {
-                $cid = $defaultCategory->getAttribute('id');
+                return $defaultCategory;
             }
         }
-        return $cid;
+        return $this->categories->forUser($request->user())->where('id', $cid)->first();
     }
 
     public function index(Request $request, $cid = null)
@@ -49,12 +49,16 @@ class CategoryController extends Controller
         $categories = $this->categories->forUser($request->user())
             ->get();
 
-        $selectedCId = $this->getCategoryIdFromRequest($request, $cid);
+        $currentCate = $this->getCategoryFromRequest($request, $cid);
+        if (!$currentCate) {
+            return 'Page not found';
+        }
+
         $notes = $this->notes
-            ->forCategory($selectedCId)
+            ->forCategory($currentCate->id)
             ->get();
         return view('categories.index', [
-                'categories' => $categories, 'notes' => $notes, 'cid' => $cid
+                'categories' => $categories, 'notes' => $notes, 'currentCate' => $currentCate
             ]
         );
 
@@ -75,8 +79,21 @@ class CategoryController extends Controller
         return response()->json($category->toArray());
     }
 
-    public function editCategory(Request $request)
+    public function editCategory(Request $request, $cid = null)
     {
+        $this->validate($request, [
+                'name' => 'required|max:255',
+            ]
+        );
+
+        $category = $this->categories->forUser($request->user())->where('id', $cid)->first();
+        if (!$category) {
+            return 'Page not found';
+        }
+        $status = $category->update(['name' => $request->input('name')]);
+        if ($status) {
+            return redirect('/categories/' . $cid);
+        }
 
     }
 
@@ -125,11 +142,10 @@ class CategoryController extends Controller
             ]
         );
 
-        $categoryId = $this->getCategoryIdFromRequest($request, $cid);
-        if  (!$categoryId) {
+        $category = $this->categories->forUser($request->user())->where('id', $cid)->first();
+        if  (!$category) {
             return response()->json(['status' => false]);
         }
-        $category = $this->categories->findOne($categoryId);
 
         $note = $category->notes()->create([
                 'title' => $request->input('title'),
