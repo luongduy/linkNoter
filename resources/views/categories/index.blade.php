@@ -14,37 +14,36 @@
                                 </span>
                             @endforeach
                         @endif
-                    </div>
-
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span
-                                    class="glyphicon glyphicon-plus"></span>&nbsp New Category
-                        </button>
-                        <ul class="dropdown-menu" role="menu">
-                            <li>
-                                <div class="container-fluid">
-                                    <form id="addCategoryForm" action="{{ url('categories/storeCategory') }}"
-                                          method="POST">
-                                        {!! csrf_field() !!}
-                                        <div class="row">
-                                            <div class="col-sm-10">
-                                                <div class="form-group">
-                                                    <input type="text" class="form-control" id="newCategoryName"
-                                                           name="name" placeholder="Give a name ...">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span
+                                        class="glyphicon glyphicon-plus"></span>&nbsp New Category
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-right cateMenuDD" role="menu">
+                                <li>
+                                    <div class="container-fluid">
+                                        <form id="addCategoryForm" action="{{ url('categories/storeCategory') }}"
+                                              method="POST">
+                                            {!! csrf_field() !!}
+                                            <div class="row">
+                                                <div class="col-sm-10">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" id="newCategoryName"
+                                                               name="name" placeholder="Give a name ...">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <div class="form-group">
+                                                        <button id="submitCategory" class="btn btn-info" type="button"><span
+                                                                    class="glyphicon glyphicon-save"></span>&nbsp Save
+                                                        </button>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-2">
-                                                <div class="form-group">
-                                                    <button id="submitCategory" class="btn btn-info" type="button"><span
-                                                                class="glyphicon glyphicon-save"></span>&nbsp Save
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </li>
-                        </ul>
+                                        </form>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
 
                 </div>
