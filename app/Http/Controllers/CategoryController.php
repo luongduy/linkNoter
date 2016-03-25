@@ -50,15 +50,18 @@ class CategoryController extends Controller
             ->get();
 
         $currentCate = $this->getCategoryFromRequest($request, $cid);
-        if (!$currentCate) {
-            return 'Page not found';
+
+        $notes = null;
+        if ($currentCate) {
+            $notes = $this->notes
+                ->forCategory($currentCate->id)
+                ->get();
         }
 
-        $notes = $this->notes
-            ->forCategory($currentCate->id)
-            ->get();
         return view('categories.index', [
-                'categories' => $categories, 'notes' => $notes, 'currentCate' => $currentCate
+                'categories' => $categories,
+                'notes' => $notes,
+                'currentCate' => $currentCate
             ]
         );
 

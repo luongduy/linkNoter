@@ -1,7 +1,7 @@
 
 @extends('layouts.app')
 @section('content')
-<div class="container-fluid">
+<div class="container-fluid" id="LA">
     <div class="row">
         <div class = "col-sm-5">
             <div class = "input-group">
@@ -74,21 +74,34 @@
 </div>
 <hr>
 <div class="container-fluid">
+    <?php $i = 0; ?>
     @foreach ($links as $link)
     <div class="row">
         <div class="col-sm-1">
-            <div>
-                <button class = "btn btn-default center-block voteButton" type = "button">
+            <div >
+                @if ($votes[$i] == 1)
+                <button class = "btn btn-default center-block voteButton voteUp" type = "button">
+                         <span class="glyphicon glyphicon-chevron-up voted"></span>
+                </button> 
+                @else
+                <button class = "btn btn-default center-block voteButton voteUp" type = "button">
                          <span class="glyphicon glyphicon-chevron-up"></span>
                 </button> 
+                @endif
             </div>
             <div  align="center">
                 <label class="voteLabel"> {{$link->voted}} </label> <br />
             </div>
             <div>
-                <button class = "btn btn-default center-block voteButton" type = "button">
+                @if ($votes[$i] == -1)
+                <button class = "btn btn-default center-block voteButton voteDown" type = "button">
+                         <span class="glyphicon glyphicon-chevron-down voted"></span>
+                </button>
+                @else
+                <button class = "btn btn-default center-block voteButton voteDown" type = "button">
                          <span class="glyphicon glyphicon-chevron-down"></span>
                 </button>
+                @endif
             </div>
         </div>
         <div class="col-sm-11">
@@ -104,6 +117,7 @@
         </div>
     </div>
     <hr class="linkHr">
+    <?php $i++; ?>
     @endforeach
     <br/>
 </div>

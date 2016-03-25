@@ -31,6 +31,8 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/links/tags', 'LinkController@getTags');
 	Route::get('/links/tags/{name}', 'LinkController@getTag');
 	Route::post('/links/increaseView/{link}', 'LinkController@increaseView');
+	Route::post('/links/increaseVote/{link}', 'LinkController@increaseVote');
+	Route::post('/links/decreaseVote/{link}', 'LinkController@decreaseVote');
 
     Route::get('/categories/{cid?}', 'CategoryController@index');
     Route::post('/categories/storeCategory', 'CategoryController@storeCategory');

@@ -25,6 +25,10 @@ class User extends Authenticatable
 	public function categories() {
 		return $this->hasMany('App\Category');
 	}
+	public function votes() {
+		return $this->belongsToMany('App\Link', 'votes');
+	}
+
     /**
      * The attributes that are mass assignable.
      *

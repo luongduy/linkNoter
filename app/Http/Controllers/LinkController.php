@@ -18,8 +18,11 @@ class LinkController extends Controller
 	protected $links, $tags; // repository
 
 	public function index(Request $request) {
+		$link_collection = $this->links->getAllLinks();
+		$vote_arr = $this->links->getVotes($link_collection, $request->user());
 		return view('links.index', [
-			'links' => $this->links->getAllLinks(),
+			'links' => $link_collection,
+			'votes' => $vote_arr
 		]);
 	}
 	// save new link to database
@@ -51,12 +54,16 @@ class LinkController extends Controller
     	}
     	return redirect('/links');
 	}
-
+	// return links that have $tag
 	public function getTag(Request $request, $tag) {
+		$link_collection = $this->tags->getTagByName($tag)->links;
+		$vote_arr = $this->links->getVotes($link_collection, $request->user());
 		return view('links.index', [
-			'links' => $this->tags->getTagByName($tag)->links,
+			'links' => $link_collection,
+			'votes' => $vote_arr
 		]);
 	}
+	// return page with all tags
 	public function getTags() {
 		return view('links.tags', [
 			'tags' => $this->tags->getAllTags(),
@@ -65,8 +72,15 @@ class LinkController extends Controller
 
 	public function increaseView(Request $request, Link $link) {
 		$link->viewed = $link->viewed + 1;
-		Log::info("View:".$link->viewed);
 		$link->save();	
+		return "";
+	}
+	public function increaseVote(Request $request, Link $link) {
+		$this->links->increaseVote($link, $request->user());
+		return "";
+	}
+	public function decreaseVote(Request $request, Link $link) {
+		$this->links->decreaseVote($link, $request->user());
 		return "";
 	}
     public function __construct(LinkRepository $links, TagRepository $tags) {

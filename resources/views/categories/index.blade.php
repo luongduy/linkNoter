@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-12">
-                    <div class="categoryList">
+                    <div class="categoryList col-sm-6">
                         @if (!$categories->isEmpty())
                             @foreach ($categories as $c)
                                 <span class="categoryWrap">
@@ -14,36 +14,30 @@
                                 </span>
                             @endforeach
                         @endif
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span
-                                        class="glyphicon glyphicon-plus"></span>&nbsp New Category
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-right cateMenuDD" role="menu">
-                                <li>
-                                    <div class="container-fluid">
-                                        <form id="addCategoryForm" action="{{ url('categories/storeCategory') }}"
-                                              method="POST">
-                                            {!! csrf_field() !!}
-                                            <div class="row">
-                                                <div class="col-sm-10">
-                                                    <div class="form-group">
-                                                        <input type="text" class="form-control" id="newCategoryName"
-                                                               name="name" placeholder="Give a name ...">
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-2">
-                                                    <div class="form-group">
-                                                        <button id="submitCategory" class="btn btn-info" type="button"><span
-                                                                    class="glyphicon glyphicon-save"></span>&nbsp Save
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
+                    </div>
+                    <div class="btn-group col-sm-6">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span
+                                    class="glyphicon glyphicon-plus"></span>&nbsp New Category
+                        </button>
+                        <ul class="dropdown-menu cateMenuDD" role="menu">
+                            <li>
+                                <div class="container-fluid">
+                                    <form id="addCategoryForm" action="{{ url('categories/storeCategory') }}"
+                                          method="POST">
+                                        {!! csrf_field() !!}
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="newCategoryName"
+                                                   name="name" placeholder="Give a name ...">
+                                        </div>
+                                        <div class="form-group pull-right">
+                                            <button id="submitCategory" class="btn btn-info" type="button"><span
+                                                        class="glyphicon glyphicon-save"></span>&nbsp Save
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
 
                 </div>
@@ -67,6 +61,8 @@
         <hr/>
 
         <div class="container-fluid">
+            @if (!empty($currentCate))
+
             <form id="addNoteForm" class="row" action="{{ url('categories/storeNote', ['cid' => $currentCate->id]) }}" method="POST">
                 {!! csrf_field() !!}
                 <div class="form-group title col-sm-2">
@@ -98,6 +94,8 @@
                 @endif
 
             </div>
+
+            @endif
         </div>
     </div>
 @endsection

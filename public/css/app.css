@@ -1,4 +1,4 @@
-.dropdown-menu .container-fluid {
+#LA .dropdown-menu .container-fluid {
   width: 600px;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -45,6 +45,9 @@
 .tagForm {
     display:inline!important;
 }
+.voted{
+  color:orange;
+}
 
 #CA .categoryList .categoryWrap {
   position: relative;
@@ -59,7 +62,6 @@
 }
 
 #CA .category {
-  margin-top: 5px;
   margin-bottom: 5px;
   margin-right: 5px
 }
@@ -116,4 +118,12 @@
 
 #CA .cateMenuDD {
   margin-top: 10px;
+}
+
+#CA .dropdown-menu {
+  width: 80%;
+}
+
+#CA .dropdown-menu .container-fluid {
+  padding: 10px;
 }

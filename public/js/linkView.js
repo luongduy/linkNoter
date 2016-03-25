@@ -15,9 +15,18 @@ $(document).ready(function() {
 	$("#saveLinkButton").click(function(e) {
 		saveLink();
 	});
+	// increase view when user click on links
 	$(".link").click(function(e) {
 		increaseView(e.target);
 	});
+	// voteUp button
+	$(".voteUp").click(function (e) {
+		increaseVote(e.target);
+	});
+	// voteDown button
+	$(".voteDown").click(function (e) {
+		decreaseVote(e.target);
+	})
 });
 
 function addTag() {
@@ -50,27 +59,92 @@ function saveLink() {
 				position: "top left",
 				className: "error"
 			});
-		console.log("invalid url");
 	}
-	
 }
 
 function increaseView(e) {
-	var parent = $(e).parent();
-	var linkId = parent.find('label').attr('id');
+	var linkId = $(e).parent().find('label').attr('id');
+	// token
 	$.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-            }
-        })
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+        }
+    })
 	LinkNoter.ajax({
-                    url: '/links/increaseView/'+ linkId,
-                    method: 'POST',
-                    data: '',
-                    success: function (res) {
-                        location.href = $(e).attr('href');
-                    }
-                });
+        url: '/links/increaseView/'+ linkId,
+        method: 'POST',
+        data: '',
+        success: function (res) {
+            location.href = $(e).attr('href');
+        }
+    });
+}
+
+function increaseVote(e) {
+	var invalid = $(e).parents('.col-sm-1').find('.glyphicon-chevron-up').hasClass('voted');
+	if (!invalid) {
+		var linkId = $(e).parents('.row').find('.numberOfViewLabel').attr('id');
+		// token
+		$.ajaxSetup({
+	        headers: {
+	            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+	        }
+	    })
+		LinkNoter.ajax({
+	        url: '/links/increaseVote/'+ linkId,
+	        method: 'POST',
+	        data: '',
+	        success: function (res) {
+	        	if ($(e).parents('.col-sm-1').find('.glyphicon-chevron-down').hasClass('voted')){
+	        		$(e).parents('.col-sm-1').find('.glyphicon-chevron-down').removeClass('voted');
+	        	}else $(e).parent().find('.glyphicon-chevron-up').addClass('voted');
+	        	var voteLabel = $(e).parents('.col-sm-1').find('label');
+	        	var voteNo = voteLabel.text();
+	        	voteLabel.text(++voteNo);
+	            $.notify("Thank you very much for your feedback!", {
+					position: "bottom center",
+					className: "success"
+				});
+	        }
+	    });
+	    return true;
+	}
+    return false;
+}
+
+function decreaseVote(e) {
+	var invalid = $(e).parents('.col-sm-1').find('.glyphicon-chevron-down').hasClass('voted');
+	if (!invalid) {
+		var linkId = $(e).parents('.row').find('.numberOfViewLabel').attr('id');
+		// token
+		$.ajaxSetup({
+	        headers: {
+	            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+	        }
+	    })
+		LinkNoter.ajax({
+	        url: '/links/decreaseVote/'+ linkId,
+	        method: 'POST',
+	        data: '',
+	        success: function (res) {
+	        	if ($(e).parents('.col-sm-1').find('.glyphicon-chevron-up').hasClass('voted')){
+	        		$(e).parents('.col-sm-1').find('.glyphicon-chevron-up').removeClass('voted');
+	        	}else {
+	        		$(e).parent().find('.glyphicon-chevron-down').addClass('voted');
+
+	        	}
+	        	var voteLabel = $(e).parents('.col-sm-1').find('label');
+	        	var voteNo = voteLabel.text();
+	        	voteLabel.text(--voteNo);
+	            $.notify("Thank you very much for your feedback!", {
+					position: "bottom center",
+					className: "success"
+				});
+	        }
+	    });
+	    return true;
+	}
+    return false;
 }
 
 function validateURL(textval) {
