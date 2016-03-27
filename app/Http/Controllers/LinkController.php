@@ -86,6 +86,10 @@ class LinkController extends Controller
 		$this->links->decreaseVote($link, $request->user());
 		return "";
 	}
+	public function deleteLink(Request $request, Link $link) {
+		$link->delete();
+		return redirect('/links');
+	}
 
 	public function doSearch(Request $request) {
 		if ($request->searchText == null)

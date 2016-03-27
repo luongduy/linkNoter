@@ -38,7 +38,6 @@
 }
 
 .glyphicon-plus-sign {
-
   pointer-events: none;
 }
 
@@ -47,6 +46,16 @@
 }
 .voted{
   color:orange;
+}
+.deleteLink {
+  float:right;
+  clear:right;
+  
+}
+.linkOwnerSpan {
+  float:right;
+
+  margin-right: 5px;
 }
 
 #CA .categoryList .categoryWrap {

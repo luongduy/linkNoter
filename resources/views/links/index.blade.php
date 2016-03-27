@@ -117,6 +117,13 @@
                     {{$tag->name}}
                 </a>
             @endforeach
+            @if ($link->user->name == Auth::user()->name)
+                <a class="deleteLink" href=""> | delete</a>
+                <span class="linkOwnerSpan"> By you <span class="createdAtSpan"> {{$link->created_at}} </span></span>
+            @else
+            <span class="linkOwnerSpan" style="clear:right;"> By {{$link->user->name}} <span class="createdAtSpan"> {{$link->created_at}} </span> </span>
+            @endif
+
         </div>
     </div>
     <hr class="linkHr">

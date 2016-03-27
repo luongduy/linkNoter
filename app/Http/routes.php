@@ -26,6 +26,7 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/', function () {
     	return view('welcome');
 	});
+	// link page's routes
 	Route::get('/links', 'LinkController@index');
 	Route::post('/links', 'LinkController@store');
 	Route::get('/links/tags', 'LinkController@getTags');
@@ -35,6 +36,7 @@ Route::group(['middleware' => ['web']], function () {
 	Route::post('/links/decreaseVote/{link}', 'LinkController@decreaseVote');
 	Route::post('/links/doSearch', 'LinkController@doSearch');
 	Route::get('/links/doSearch', 'LinkController@doSearch');
+	Route::post('/links/deleteLink/{link}', 'LinkController@deleteLink');
 
     Route::get('/categories/{cid?}', 'CategoryController@index');
     Route::post('/categories/storeCategory', 'CategoryController@storeCategory');
