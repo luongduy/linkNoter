@@ -83,6 +83,17 @@ class LinkController extends Controller
 		$this->links->decreaseVote($link, $request->user());
 		return "";
 	}
+
+	public function doSearch(Request $request) {
+		$searchString = $request->searchText;
+		$link_collection = $this->links->searchLinks($searchString);
+		$vote_arr = $this->links->getVotes($link_collection, $request->user());
+		return view('links.index', [
+			'links' => $link_collection,
+			'votes' => $vote_arr
+		]);
+	}
+
     public function __construct(LinkRepository $links, TagRepository $tags) {
 	   	$this->middleware('auth');
 		$this->links = $links;

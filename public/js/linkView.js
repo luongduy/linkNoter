@@ -27,6 +27,10 @@ $(document).ready(function() {
 	$(".voteDown").click(function (e) {
 		decreaseVote(e.target);
 	})
+	// search button
+	$("#searchButton").click(function (e) {
+		doSearch(e.target);
+	})
 });
 
 function addTag() {
@@ -145,6 +149,13 @@ function decreaseVote(e) {
 	    return true;
 	}
     return false;
+}
+
+function doSearch(e) {
+	var searchText = $("#searchTextbox").val();
+	if ("" != searchText){
+		$("#searchForm").submit();	
+	}
 }
 
 function validateURL(textval) {

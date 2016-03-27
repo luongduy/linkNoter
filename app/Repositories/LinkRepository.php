@@ -61,4 +61,7 @@ class LinkRepository
         $link->voted --;
         $link->save();
     }
+    public function searchLinks($searchString) {
+        return Link::where('title', 'LIKE', "%$searchString%")->get();
+    }
 }

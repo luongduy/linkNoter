@@ -4,14 +4,17 @@
 <div class="container-fluid" id="LA">
     <div class="row">
         <div class = "col-sm-5">
-            <div class = "input-group">
-               <input id="searchTextbox" type = "text" class = "form-control" placeholder="Search">
-               <span class = "input-group-btn">
-                  <button class = "btn btn-default" type = "button">
-                     <span class="glyphicon glyphicon-search"></span>
-                  </button>
-               </span>
-            </div>
+            <form id="searchForm" action="{{ url('links/doSearch') }}" method="POST">
+                {!! csrf_field() !!}
+                <div class = "input-group">
+                   <input id="searchTextbox" type = "text" name="searchText" class = "form-control" placeholder="Search">
+                   <span class = "input-group-btn">
+                      <button id="searchButton" class = "btn btn-default" type="button">
+                         <span class="glyphicon glyphicon-search"></span>
+                      </button>
+                   </span>
+                </div>
+            </form>
         </div>
         <div class = "col-sm-1">    
             <div class="btn-group">
