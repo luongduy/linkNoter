@@ -34,6 +34,7 @@ Route::group(['middleware' => ['web']], function () {
 	Route::post('/links/increaseVote/{link}', 'LinkController@increaseVote');
 	Route::post('/links/decreaseVote/{link}', 'LinkController@decreaseVote');
 	Route::post('/links/doSearch', 'LinkController@doSearch');
+	Route::get('/links/doSearch', 'LinkController@doSearch');
 
     Route::get('/categories/{cid?}', 'CategoryController@index');
     Route::post('/categories/storeCategory', 'CategoryController@storeCategory');

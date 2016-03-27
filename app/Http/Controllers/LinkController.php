@@ -85,6 +85,8 @@ class LinkController extends Controller
 	}
 
 	public function doSearch(Request $request) {
+		if ($request->searchText == null)
+			return redirect ('/links');
 		$searchString = $request->searchText;
 		$link_collection = $this->links->searchLinks($searchString);
 		$vote_arr = $this->links->getVotes($link_collection, $request->user());

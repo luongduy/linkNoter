@@ -11,9 +11,15 @@ $(document).ready(function() {
 	$("#addTagButton").click(function (e) {
 		addTag();
 	});
+	$("#tagTextbox").keypress(function (e) {
+		if (e.which == 13) addTag();
+	});
 	// adding click event to the saveLinkButton
 	$("#saveLinkButton").click(function(e) {
 		saveLink();
+	});
+	$("#addTextbox").keypress(function(e) {
+		if (e.which == 13) saveLink();
 	});
 	// increase view when user click on links
 	$(".link").click(function(e) {
@@ -26,11 +32,14 @@ $(document).ready(function() {
 	// voteDown button
 	$(".voteDown").click(function (e) {
 		decreaseVote(e.target);
-	})
+	});
 	// search button
 	$("#searchButton").click(function (e) {
 		doSearch(e.target);
-	})
+	});
+	$("#searchTextbox").keypress(function (e) {
+		if (e.which == 13) doSearch(e);
+	});
 });
 
 function addTag() {
@@ -42,7 +51,7 @@ function addTag() {
 		$("#labelDiv").append(tagLabel);
 	}
 	$("#tags").val(tags);
-	$("#tagTextbox").val("");
+	$("#tagTextbox").focus().val("");
 }
 
 function clearSaveLinkForm() {
