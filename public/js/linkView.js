@@ -106,6 +106,7 @@ function increaseVote(e) {
 		LinkNoter.ajax({
 	        url: '/links/increaseVote/'+ linkId,
 	        method: 'POST',
+	        async: false,
 	        data: '',
 	        success: function (res) {
 	        	if ($(e).parents('.col-sm-1').find('.glyphicon-chevron-down').hasClass('voted')){
@@ -138,6 +139,7 @@ function decreaseVote(e) {
 		LinkNoter.ajax({
 	        url: '/links/decreaseVote/'+ linkId,
 	        method: 'POST',
+	        async: false,
 	        data: '',
 	        success: function (res) {
 	        	if ($(e).parents('.col-sm-1').find('.glyphicon-chevron-up').hasClass('voted')){

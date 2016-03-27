@@ -31,6 +31,9 @@ class LinkController extends Controller
 		$util = new Util();
 		// get the page's title based on page url
 		$title = $util->getTitle($href);
+		if ($title === FALSE) {
+			return view ('errors.link_error');
+		}
 		// save the link to database
 		$savedLink = $request->user()->links()->create([
         	'title' => $title,
