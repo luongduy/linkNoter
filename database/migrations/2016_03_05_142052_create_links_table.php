@@ -18,8 +18,8 @@ class CreateLinksTable extends Migration
 			$table->integer('user_id')->unsigned();
 			$table->string('title');
 			$table->string('href');
-			$table->integer('voted');
-			$table->integer('viewed');
+			$table->integer('voted')->default(0); // no. of votes
+			$table->integer('viewed')->default(0); // no. of views
             $table->timestamps();
 			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });

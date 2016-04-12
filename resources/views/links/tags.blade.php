@@ -1,7 +1,7 @@
 
 @extends('layouts.app')
 @section('content')
-<div class="container-fluid">
+<div id="LA" class="container-fluid">
     <div class="row">
         <div class = "col-sm-5">
             <div class = "input-group">

@@ -109,7 +109,8 @@
         </div>
         <div class="col-sm-11">
             <br />
-            <a class="link" href="{{$link->href}}">{{$link->title}}</a>
+            <!-- <a class="link" href="{{$link->href}}">{{$link->title}}</a> -->
+            <a class="link" href="{{ url('links/'.$link->id.'/comments') }}">{{$link->title}}</a>
             <label id="{{$link->id}}" class="label label-warning numberOfViewLabel"> {{$link->viewed}} views</label>
             <br />
             @foreach ($link->tags as $tag)
@@ -118,8 +119,8 @@
                 </a>
             @endforeach
             @if ($link->user->name == Auth::user()->name)
-                <a class="deleteLink" href=""> | delete</a>
-                <span class="linkOwnerSpan"> By you <span class="createdAtSpan"> {{$link->created_at}} </span></span>
+                <a class="deleteLink" href="">delete</a>
+                <span class="linkOwnerSpan"> By you <span class="createdAtSpan"> {{$link->created_at}} </span>  | </span>
             @else
             <span class="linkOwnerSpan" style="clear:right;"> By {{$link->user->name}} <span class="createdAtSpan"> {{$link->created_at}} </span> </span>
             @endif

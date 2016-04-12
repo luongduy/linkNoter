@@ -27,14 +27,19 @@ class LinkRepository
     public function getVotes(Collection $links, User $user) {
         $arr = array();
         foreach ($links as $link) {
-            $vote = Vote::where('user_id', $user->id)->where('link_id', $link->id)->first();
-            if ($vote == null) array_push($arr, 0);
-            else array_push($arr, $vote->current_vote);
+            array_push($arr, $this->getVote($link, $user));
         }
         return $arr;
     }
+
+    public function getVote(Link $link, User $user) {
+        $vote = Vote::where('user_id', $user->id)->where('link_id', $link->id)->where('type', 'link')->first();
+        if ($vote == null) return 0;
+        else return $vote->current_vote;
+    }
+
     public function increaseVote(Link $link, User $user) {
-        $existedVote = Vote::where('user_id', $user->id)->where('link_id', $link->id)->first();
+        $existedVote = Vote::where('user_id', $user->id)->where('link_id', $link->id)->where('type', 'link')->first();
         if ($existedVote != null) {
             $newVote = $existedVote;
             Log::info("NOT NULL");
@@ -42,21 +47,20 @@ class LinkRepository
         else $newVote = new Vote;
         $newVote->user_id = $user->id;
         $newVote->link_id = $link->id;
-        Log::info($newVote->current_vote);
-        $newVote->current_vote = $newVote->current_vote + 1;
-        Log::info($newVote->current_vote);
+        $newVote->type = 'link';
+        $newVote->current_vote ++;
         $newVote->save();
         $link->voted ++;
         $link->save();
     }
     public function decreaseVote(Link $link, User $user) {
-        $existedVote = Vote::where('user_id', $user->id)->where('link_id', $link->id)->first();
+        $existedVote = Vote::where('user_id', $user->id)->where('link_id', $link->id)->where('type', 'link')->first();
         if ($existedVote != null) $newVote = $existedVote;
         else $newVote = new Vote;
         $newVote->user_id = $user->id;
         $newVote->link_id = $link->id;
-        $newVote->current_vote = $newVote->current_vote - 1;
-        Log::info($newVote->current_vote);
+        $newVote->type = 'link';
+        $newVote->current_vote --;
         $newVote->save();
         $link->voted --;
         $link->save();

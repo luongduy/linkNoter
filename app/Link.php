@@ -9,11 +9,14 @@ class Link extends Model
 	public function user() {
 		return $this->belongsTo('App\User');
 	}
+	public function comments() {
+        return $this->hasMany('App\Comment');
+    }
+    public function votes() {
+        return $this->hasMany('App\Vote');
+    }
 	public function tags() {
 		return $this->belongsToMany('App\Tag');
-	}
-	public function voted_by() {
-		return $this->belongsToMany('App\User', 'votes');
 	}
 	/**
      * The attributes that are mass assignable.

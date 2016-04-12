@@ -37,6 +37,9 @@ Route::group(['middleware' => ['web']], function () {
 	Route::post('/links/doSearch', 'LinkController@doSearch');
 	Route::get('/links/doSearch', 'LinkController@doSearch');
 	Route::post('/links/deleteLink/{link}', 'LinkController@deleteLink');
+	Route::get('/links/{link}/comments', 'LinkController@getComments');
+	Route::post('/links/{link}/comments/{comment}/increaseVote', 'LinkController@increaseCommentVote');
+	Route::post('/links/{link}/comments/{comment}/decreaseVote', 'LinkController@decreaseCommentVote');
 
     Route::get('/categories/{cid?}', 'CategoryController@index');
     Route::post('/categories/storeCategory', 'CategoryController@storeCategory');

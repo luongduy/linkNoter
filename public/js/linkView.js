@@ -65,6 +65,7 @@ function clearSaveLinkForm() {
 	$("#tagTextbox").val("");
 	$("#tags").val("");
 	$("#labelDiv").empty();
+	$("#addTextbox").focus();
 }
 
 function saveLink() {
@@ -83,20 +84,7 @@ function saveLink() {
 
 function increaseView(e) {
 	var linkId = $(e).parent().find('label').attr('id');
-	// token
-	$.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-        }
-    })
-	LinkNoter.ajax({
-        url: '/links/increaseView/'+ linkId,
-        method: 'POST',
-        data: '',
-        success: function (res) {
-            location.href = $(e).attr('href');
-        }
-    });
+	location.href = '/links/' + linkId + '/comments';
 }
 
 function increaseVote(e) {
@@ -206,10 +194,6 @@ function adjustCreatedTime() {
 		else if (noOfMins > 1) $(this).text(noOfMins + " minutes ago");
 		else $(this).text(noOfMins + " minute ago");
 	})
-}
-
-function convertDateToUTC(date) { 
-    return new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds()); 
 }
 
 function validateURL(textval) {

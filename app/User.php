@@ -22,11 +22,14 @@ class User extends Authenticatable
 	public function links() {
 		return $this->hasMany('App\Link');
 	}
+    public function comments() {
+        return $this->hasMany('App\Comment');
+    }
+    public function votes() {
+        return $this->hasMany('App\Vote');
+    }
 	public function categories() {
 		return $this->hasMany('App\Category');
-	}
-	public function votes() {
-		return $this->belongsToMany('App\Link', 'votes');
 	}
 
     /**

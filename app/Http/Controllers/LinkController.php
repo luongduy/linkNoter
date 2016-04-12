@@ -8,14 +8,23 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Repositories\LinkRepository;
 use App\Repositories\TagRepository;
+use App\Repositories\CommentRepository;
 use App\Util;
 use App\Tag;
 use App\Link;
+use App\Comment;
 use Log;
 
 class LinkController extends Controller
 {	
-	protected $links, $tags; // repository
+	protected $links, $tags, $comments; // repository
+
+	public function __construct(LinkRepository $links, TagRepository $tags, CommentRepository $comments) {
+	   	$this->middleware('auth');
+		$this->links = $links;
+		$this->tags = $tags;
+		$this->comments = $comments;
+    }
 
 	public function index(Request $request) {
 		$link_collection = $this->links->getAllLinks();
@@ -60,9 +69,22 @@ class LinkController extends Controller
 	// return links that have $tag
 	public function getTag(Request $request, $tag) {
 		$link_collection = $this->tags->getTagByName($tag)->links;
-		$vote_arr = $this->links->getVotes($link_collection, $request->user());
+		$votecomment_arr = $this->links->getVotes($link_collection, $request->user());
 		return view('links.index', [
 			'links' => $link_collection,
+			'vote' => $vote,
+			'votecomments' => $votecomment_arr
+		]);
+	}
+	// return comments page
+	public function getComments(Request $request, Link $link) {
+		$vote = $this->links->getVote($link, $request->user());
+		$comment_collection = $this->comments->forLink($link);
+		$vote_arr = $this->comments->getVotes($comment_collection, $request->user());
+		return view('links.comments' ,[
+			'link' => $link,
+			'vote' => $vote,
+			'comments' => $comment_collection,
 			'votes' => $vote_arr
 		]);
 	}
@@ -91,6 +113,15 @@ class LinkController extends Controller
 		return redirect('/links');
 	}
 
+	public function increaseCommentVote(Request $request, Link $link, Comment $comment) {
+		$this->comments->increaseCommentVote($comment, $request->user());
+		return "";
+	}
+	public function decreaseCommentVote(Request $request, Link $link, Comment $comment) {
+		$this->comments->decreaseCommentVote($comment, $request->user());
+		return "";
+	}
+
 	public function doSearch(Request $request) {
 		if ($request->searchText == null)
 			return redirect ('/links');
@@ -102,11 +133,5 @@ class LinkController extends Controller
 			'votes' => $vote_arr
 		]);
 	}
-
-    public function __construct(LinkRepository $links, TagRepository $tags) {
-	   	$this->middleware('auth');
-		$this->links = $links;
-		$this->tags = $tags;
-    }
 
 }
