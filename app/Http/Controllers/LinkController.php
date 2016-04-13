@@ -72,8 +72,7 @@ class LinkController extends Controller
 		$votecomment_arr = $this->links->getVotes($link_collection, $request->user());
 		return view('links.index', [
 			'links' => $link_collection,
-			'vote' => $vote,
-			'votecomments' => $votecomment_arr
+			'votes' => $votecomment_arr
 		]);
 	}
 	// return comments page
@@ -87,6 +86,16 @@ class LinkController extends Controller
 			'comments' => $comment_collection,
 			'votes' => $vote_arr
 		]);
+	}
+	// post a comment
+	public function postComment(Request $request, Link $link) {
+		$content = $request->content;
+		$comment = new Comment;
+		$comment->user_id = $request->user()->id;
+		$comment->link_id = $link->id;
+		$comment->content = $content;
+		$comment->save();
+		return redirect('/links/'.$link->id.'/comments');
 	}
 	// return page with all tags
 	public function getTags() {

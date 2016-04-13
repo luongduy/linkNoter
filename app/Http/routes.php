@@ -38,6 +38,7 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/links/doSearch', 'LinkController@doSearch');
 	Route::post('/links/deleteLink/{link}', 'LinkController@deleteLink');
 	Route::get('/links/{link}/comments', 'LinkController@getComments');
+	Route::post('/links/{link}/postComment', 'LinkController@postComment');
 	Route::post('/links/{link}/comments/{comment}/increaseVote', 'LinkController@increaseCommentVote');
 	Route::post('/links/{link}/comments/{comment}/decreaseVote', 'LinkController@decreaseCommentVote');
 

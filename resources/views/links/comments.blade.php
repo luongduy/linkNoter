@@ -4,6 +4,8 @@
 
 <div class="container-fluid">
     <div class="row">
+        <div class="panel panel-primary">
+        <div class="panel-body">
         <span id="{{$link->id}}" class="link-id"></span>
         <div class="col-sm-1">
             <div >
@@ -48,13 +50,25 @@
             @else
             <span class="linkOwnerSpan" style="clear:right;"> By {{$link->user->name}} <span class="createdAtSpan"> {{$link->created_at}} </span> </span>
             @endif
-
         </div>
+        </div></div>
     </div>
-    <hr>
 </div>
 
 <h3> {{$comments->count()}} Comments</h3>
+<hr>
+
+<div class="container-fluid">
+    <form id="post-comment-form" method="POST" action="{{ url('links/'.$link->id.'/postComment') }}">
+        {!! csrf_field() !!}
+        <div class="form-group">
+            <textarea class="form-control" rows="4" name="content" placeholder="Join the discussion..."></textarea>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary" type=submit>Post</input>
+        </div>
+  </form>
+</div>
 
 <div class="container-fluid">
     <?php $i = 0; ?>
@@ -97,6 +111,8 @@
     @endforeach
     <br/>
 </div>
+
+
 
 @endsection
 

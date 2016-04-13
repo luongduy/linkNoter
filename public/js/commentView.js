@@ -37,7 +37,7 @@ function adjustCreatedTime() {
 }
 
 function increaseView(e) {
-	var linkId = $(e).parent().find('label').attr('id');
+	var linkId = $(e).parents('.row').find('.link-id').attr('id');
 	// token
 	$.ajaxSetup({
         headers: {

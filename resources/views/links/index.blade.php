@@ -119,10 +119,13 @@
                 </a>
             @endforeach
             @if ($link->user->name == Auth::user()->name)
-                <a class="deleteLink" href="">delete</a>
-                <span class="linkOwnerSpan"> By you <span class="createdAtSpan"> {{$link->created_at}} </span>  | </span>
+                <span class="deleteLink"> <span class="glyphicon glyphicon-trash"> </span> <a href=""> delete</a> </span>
+                <span class="linkOwnerSpan"> <span class="glyphicon glyphicon-user"> </span> <a href="#"> You </a>| </span> 
+                <span class="linkOwnerSpan"> <span class="glyphicon glyphicon-time"> </span> <span class="createdAtSpan "> {{$link->created_at}} </span> | </span>
             @else
-            <span class="linkOwnerSpan" style="clear:right;"> By {{$link->user->name}} <span class="createdAtSpan"> {{$link->created_at}} </span> </span>
+                <span class="linkOwnerSpan" style="clear: right"> <span class="glyphicon glyphicon-user"> </span> <a href="#"> {{$link->user->name}} </a></span> 
+                <span class="linkOwnerSpan" > <span class="glyphicon glyphicon-time"> </span> <span class="createdAtSpan ">{{$link->created_at}} </span> | </span>
+
             @endif
 
         </div>
