@@ -15,8 +15,14 @@ class CommentRepository
                     ->orderBy('created_at', 'asc')
                     ->get();
     }
-    public function getVotes(Collection $comments, User $user) {
+    public function getVotes(Collection $comments, User $user = null) {
         $arr = array();
+        if ($user === null) {
+            foreach ($comments as $comment) {
+                array_push($arr, 0);
+            }
+            return $arr;
+        }
         foreach ($comments as $comment) {
             $vote = $user->votes()->where('comment_id', $comment->id)->where('type', 'comment')->first();
             if ($vote == null) array_push($arr, 0);

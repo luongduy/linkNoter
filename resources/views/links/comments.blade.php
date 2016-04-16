@@ -44,7 +44,7 @@
                     {{$tag->name}}
                 </a>
             @endforeach
-            @if ($link->user->name == Auth::user()->name)
+            @if ((Auth::user() !== null) and ($link->user->name === Auth::user()->name))
                 <a class="deleteLink" href="">delete</a>
                 <span class="linkOwnerSpan"> By you <span class="createdAtSpan">{{$link->created_at}}</span>&nbsp|</span>
             @else

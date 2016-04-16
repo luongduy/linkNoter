@@ -24,46 +24,54 @@ class LinkRepository
     public function getAllLinks() {
         return Link::orderBy('created_at', 'desc')->get();
     }
-    public function getVotes(Collection $links, User $user) {
+    public function getVotes(Collection $links, User $user = null) {
         $arr = array();
+        if ($user === null) {
+            foreach ($links as $link) {
+                array_push($arr, 0);
+            }
+            return $arr;
+        }
         foreach ($links as $link) {
             array_push($arr, $this->getVote($link, $user));
         }
         return $arr;
     }
 
-    public function getVote(Link $link, User $user) {
+    public function getVote(Link $link, User $user = null) {
+        if ($user === null) return 0;
         $vote = Vote::where('user_id', $user->id)->where('link_id', $link->id)->where('type', 'link')->first();
         if ($vote == null) return 0;
         else return $vote->current_vote;
     }
 
     public function increaseVote(Link $link, User $user) {
-        $existedVote = Vote::where('user_id', $user->id)->where('link_id', $link->id)->where('type', 'link')->first();
-        if ($existedVote != null) {
-            $newVote = $existedVote;
-            Log::info("NOT NULL");
+        $newVote = Vote::where('user_id', $user->id)->where('link_id', $link->id)->where('type', 'link')->first();
+        if ($newVote === null) $newVote = new Vote;
+        
+        if ($newVote->current_vote < 1) {
+            $newVote->user_id = $user->id;
+            $newVote->link_id = $link->id;
+            $newVote->type = 'link';
+            $newVote->current_vote ++;
+            $newVote->save();
+            $link->voted ++;
+            $link->save();
         }
-        else $newVote = new Vote;
-        $newVote->user_id = $user->id;
-        $newVote->link_id = $link->id;
-        $newVote->type = 'link';
-        $newVote->current_vote ++;
-        $newVote->save();
-        $link->voted ++;
-        $link->save();
     }
     public function decreaseVote(Link $link, User $user) {
-        $existedVote = Vote::where('user_id', $user->id)->where('link_id', $link->id)->where('type', 'link')->first();
-        if ($existedVote != null) $newVote = $existedVote;
-        else $newVote = new Vote;
-        $newVote->user_id = $user->id;
-        $newVote->link_id = $link->id;
-        $newVote->type = 'link';
-        $newVote->current_vote --;
-        $newVote->save();
-        $link->voted --;
-        $link->save();
+        $newVote = Vote::where('user_id', $user->id)->where('link_id', $link->id)->where('type', 'link')->first();
+        if ($newVote === null) $newVote = new Vote;
+        
+        if ($newVote->current_vote > -1) {
+            $newVote->user_id = $user->id;
+            $newVote->link_id = $link->id;
+            $newVote->type = 'link';
+            $newVote->current_vote --;
+            $newVote->save();
+            $link->voted --;
+            $link->save();
+        }
     }
     public function searchLinks($searchString) {
         return Link::where('title', 'LIKE', "%$searchString%")->get();

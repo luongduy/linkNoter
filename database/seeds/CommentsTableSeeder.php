@@ -19,7 +19,7 @@ class CommentsTableSeeder extends Seeder
         $linkId = DB::table('links')->insertGetId([
         	'user_id' => $userId,
             'title' => str_random(10),
-            'href' => str_random(10).'com'
+            'href' => 'http://thangtran.tech/'
         ]);
         for ($i = 0; $i < 20; $i++) {
 	        DB::table('comments')->insert([

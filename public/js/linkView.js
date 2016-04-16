@@ -97,7 +97,7 @@ function increaseVote(e) {
 	            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
 	        }
 	    })
-		LinkNoter.ajax({
+		$.ajax({
 	        url: '/links/increaseVote/'+ linkId,
 	        method: 'POST',
 	        async: false,
@@ -113,11 +113,21 @@ function increaseVote(e) {
 					position: "bottom center",
 					className: "success"
 				});
+	        },
+	       
+	        error: function(xhr, textStatus, e) {
+	        	if (xhr.status === 401){
+	        		$.notify("Please login!", {
+						position: "bottom center",
+						className: "success"
+					});
+					location.href = '/login';
+	        	}
 	        }
+
 	    });
-	    return true;
 	}
-    return false;
+	$(':focus').blur();
 }
 
 function decreaseVote(e) {
@@ -149,11 +159,20 @@ function decreaseVote(e) {
 					position: "bottom center",
 					className: "success"
 				});
+				$(':focus').blur();
+	        },
+	        error: function(xhr, textStatus, e) {
+	        	if (xhr.status === 401){
+	        		$.notify("Please login!", {
+						position: "bottom center",
+						className: "success"
+					});
+					location.href = '/login';
+	        	}
 	        }
 	    });
-	    return true;
 	}
-    return false;
+	$(':focus').blur();
 }
 
 function doSearch(e) {

@@ -20,7 +20,15 @@ class LinkController extends Controller
 	protected $links, $tags, $comments; // repository
 
 	public function __construct(LinkRepository $links, TagRepository $tags, CommentRepository $comments) {
-	   	$this->middleware('auth');
+	   	$this->middleware('auth', ['only' => [
+	   		'store',
+	   		'increaseVote',
+	   		'decreaseVote',
+	   		'increaseCommentVote',
+	   		'decreaseCommentVote',
+	   		'postComment',
+	   		'deleteLink'
+   		]]);
 		$this->links = $links;
 		$this->tags = $tags;
 		$this->comments = $comments;

@@ -118,7 +118,7 @@
                     {{$tag->name}}
                 </a>
             @endforeach
-            @if ($link->user->name == Auth::user()->name)
+            @if ((Auth::user() !== null) and ($link->user->name == Auth::user()->name))
                 <span class="deleteLink"> <span class="glyphicon glyphicon-trash"> </span> <a href=""> delete</a> </span>
                 <span class="linkOwnerSpan"> <span class="glyphicon glyphicon-user"> </span> <a href="#"> You </a>| </span> 
                 <span class="linkOwnerSpan"> <span class="glyphicon glyphicon-time"> </span> <span class="createdAtSpan "> {{$link->created_at}} </span> | </span>
