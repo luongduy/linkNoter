@@ -49,7 +49,7 @@ function increaseView(e) {
         method: 'POST',
         data: '',
         success: function (res) {
-            location.href = '/links/' + linkId + '/comments';
+            location.href = '/links/' + linkId;
         }
     });
 }

@@ -103,7 +103,7 @@ class LinkController extends Controller
 		$comment->link_id = $link->id;
 		$comment->content = $content;
 		$comment->save();
-		return redirect('/links/'.$link->id.'/comments');
+		return redirect('/links/'.$link->id);
 	}
 	// return page with all tags
 	public function getTags() {
@@ -113,7 +113,7 @@ class LinkController extends Controller
 	}
 
 	public function increaseView(Request $request, Link $link) {
-		$link->viewed = $link->viewed + 1;
+		$link->viewed ++;
 		$link->save();	
 		return "";
 	}

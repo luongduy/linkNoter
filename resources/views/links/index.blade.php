@@ -110,7 +110,7 @@
         <div class="col-sm-11">
             <br />
             <!-- <a class="link" href="{{$link->href}}">{{$link->title}}</a> -->
-            <a class="link" href="{{ url('links/'.$link->id.'/comments') }}">{{$link->title}}</a>
+            <a class="link" href="{{ url('links/'.$link->id) }}">{{$link->title}}</a>
             <label id="{{$link->id}}" class="label label-warning numberOfViewLabel"> {{$link->viewed}} views</label>
             <br />
             @foreach ($link->tags as $tag)
