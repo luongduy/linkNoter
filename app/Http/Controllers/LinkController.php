@@ -101,13 +101,14 @@ class LinkController extends Controller
 	}
 	// post a comment
 	public function postComment(Request $request, Link $link) {
-		//if (Auth::guest())  return Redirect::guest('login');
-		$content = $request->content;
-		$comment = new Comment;
-		$comment->user_id = $request->user()->id;
-		$comment->link_id = $link->id;
-		$comment->content = $content;
-		$comment->save();
+		if ($request->has('content')) {
+			$content = $request->content;
+			$comment = new Comment;
+			$comment->user_id = $request->user()->id;
+			$comment->link_id = $link->id;
+			$comment->content = $content;
+			$comment->save();
+		}
 		return redirect('/links/'.$link->id);
 	}
 	// return page with all tags

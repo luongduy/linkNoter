@@ -103,7 +103,7 @@
             </div>
         </div>
         <div class="col-sm-11">
-            <p> {{ $comment->content }}</p>
+            <p class="comment-box"> {{ $comment->content }}</p>
         </div>
     </div>
     <hr class="linkHr">

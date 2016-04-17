@@ -1,5 +1,6 @@
 $(document).ready(function() {
 	adjustCreatedTime();
+	adjustCommentDisplay();
 	// voteUp button
 	$(".voteUp").click(function (e) {
 		increaseVote(e.target, 'link');
@@ -33,6 +34,14 @@ function adjustCreatedTime() {
 		else if (noOfHours > 0) $(this).text(noOfHours + " hour ago");
 		else if (noOfMins > 1) $(this).text(noOfMins + " minutes ago");
 		else $(this).text(noOfMins + " minute ago");
+	})
+}
+//
+function adjustCommentDisplay() {
+	var text = "";
+	$(".comment-box").each(function() {
+		text = $(this).text().replace(/\r?\n/g, '<br />'); 
+		$(this).html(text);
 	})
 }
 
