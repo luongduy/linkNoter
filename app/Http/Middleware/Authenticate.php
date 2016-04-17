@@ -21,6 +21,11 @@ class Authenticate
             if ($request->ajax() || $request->wantsJson()) {
                 return response('Unauthorized.', 401);
             } else {
+                if (stripos($request->path(), 'postComment')) {
+                    $request->session()->put('post_redirect.check',true);
+                    $request->session()->put('post_redirect.method', $request->method());
+                    $request->session()->put('post_redirect.input', $request->all());
+                }
                 return redirect()->guest('login');
             }
         }

@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Repositories\LinkRepository;
 use App\Repositories\TagRepository;
 use App\Repositories\CommentRepository;
+
 use App\Util;
 use App\Tag;
 use App\Link;
@@ -29,6 +30,9 @@ class LinkController extends Controller
 	   		'postComment',
 	   		'deleteLink'
    		]]);
+   		$this->middleware('post_redirect', ['only' => [
+   			'postComment',
+		]]);
 		$this->links = $links;
 		$this->tags = $tags;
 		$this->comments = $comments;
@@ -97,6 +101,7 @@ class LinkController extends Controller
 	}
 	// post a comment
 	public function postComment(Request $request, Link $link) {
+		//if (Auth::guest())  return Redirect::guest('login');
 		$content = $request->content;
 		$comment = new Comment;
 		$comment->user_id = $request->user()->id;
@@ -127,7 +132,7 @@ class LinkController extends Controller
 	}
 	public function deleteLink(Request $request, Link $link) {
 		$link->delete();
-		return redirect('/links');
+		return "";
 	}
 
 	public function increaseCommentVote(Request $request, Link $link, Comment $comment) {
@@ -150,5 +155,4 @@ class LinkController extends Controller
 			'votes' => $vote_arr
 		]);
 	}
-
 }

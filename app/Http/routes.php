@@ -39,6 +39,8 @@ Route::group(['middleware' => ['web']], function () {
 	Route::post('/links/deleteLink/{link}', 'LinkController@deleteLink');
 	Route::get('/links/{link}', 'LinkController@getComments');
 	Route::post('/links/{link}/postComment', 'LinkController@postComment');
+	Route::get('/links/{link}/postComment', 'LinkController@postComment');
+	
 	Route::post('/links/{link}/comments/{comment}/increaseVote', 'LinkController@increaseCommentVote');
 	Route::post('/links/{link}/comments/{comment}/decreaseVote', 'LinkController@decreaseCommentVote');
 
