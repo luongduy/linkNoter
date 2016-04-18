@@ -1,5 +1,6 @@
 $(document).ready(function() {
 	adjustCreatedTime();
+	adjustCommentDisplay();
 	// voteUp button
 	$(".voteUp").click(function (e) {
 		increaseVote(e.target, 'link');
@@ -35,6 +36,14 @@ function adjustCreatedTime() {
 		else $(this).text(noOfMins + " minute ago");
 	})
 }
+//
+function adjustCommentDisplay() {
+	var text = "";
+	$(".comment-box").each(function() {
+		text = $(this).text().replace(/\r?\n/g, '<br />'); 
+		$(this).html(text);
+	})
+}
 
 function increaseView(e) {
 	var linkId = $(e).parents('.row').find('.link-id').attr('id');
@@ -49,7 +58,7 @@ function increaseView(e) {
         method: 'POST',
         data: '',
         success: function (res) {
-            location.href = '/links/' + linkId + '/comments';
+            location.href = '/links/' + linkId;
         }
     });
 }

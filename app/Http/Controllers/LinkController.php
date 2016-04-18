@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Repositories\LinkRepository;
 use App\Repositories\TagRepository;
 use App\Repositories\CommentRepository;
+
 use App\Util;
 use App\Tag;
 use App\Link;
@@ -29,6 +30,9 @@ class LinkController extends Controller
 	   		'postComment',
 	   		'deleteLink'
    		]]);
+   		$this->middleware('post_redirect', ['only' => [
+   			'postComment',
+		]]);
 		$this->links = $links;
 		$this->tags = $tags;
 		$this->comments = $comments;
@@ -97,13 +101,15 @@ class LinkController extends Controller
 	}
 	// post a comment
 	public function postComment(Request $request, Link $link) {
-		$content = $request->content;
-		$comment = new Comment;
-		$comment->user_id = $request->user()->id;
-		$comment->link_id = $link->id;
-		$comment->content = $content;
-		$comment->save();
-		return redirect('/links/'.$link->id.'/comments');
+		if ($request->has('content')) {
+			$content = $request->content;
+			$comment = new Comment;
+			$comment->user_id = $request->user()->id;
+			$comment->link_id = $link->id;
+			$comment->content = $content;
+			$comment->save();
+		}
+		return redirect('/links/'.$link->id);
 	}
 	// return page with all tags
 	public function getTags() {
@@ -113,7 +119,7 @@ class LinkController extends Controller
 	}
 
 	public function increaseView(Request $request, Link $link) {
-		$link->viewed = $link->viewed + 1;
+		$link->viewed ++;
 		$link->save();	
 		return "";
 	}
@@ -127,7 +133,7 @@ class LinkController extends Controller
 	}
 	public function deleteLink(Request $request, Link $link) {
 		$link->delete();
-		return redirect('/links');
+		return "";
 	}
 
 	public function increaseCommentVote(Request $request, Link $link, Comment $comment) {
@@ -150,5 +156,4 @@ class LinkController extends Controller
 			'votes' => $vote_arr
 		]);
 	}
-
 }

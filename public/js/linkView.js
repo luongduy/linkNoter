@@ -84,7 +84,7 @@ function saveLink() {
 
 function increaseView(e) {
 	var linkId = $(e).parent().find('label').attr('id');
-	location.href = '/links/' + linkId + '/comments';
+	location.href = '/links/' + linkId;
 }
 
 function increaseVote(e) {
