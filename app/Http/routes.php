@@ -60,10 +60,10 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/profile', 'UserController@updateProfile');
     Route::post('/password', 'UserController@changePassword');
     Route::post('/change-avatar', 'UserController@changeAvatar');
+    Route::post('/clear-avatar', 'UserController@clearAvatar');
     Route::post('/add-avatar', 'UserController@addAvatar');
-    Route::post('/upload-file', 'FileUploadController@doUploadSingle');
-    Route::get('/open-modal-profile', function() {
-        return view('users.modal_profile');
+    Route::get('/open-modal-avatar', function() {
+        return view('users.modal_avatar');
     });
 
 	// Authentication Routes...

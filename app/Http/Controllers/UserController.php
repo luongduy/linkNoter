@@ -83,6 +83,17 @@ class UserController extends Controller
 
     }
 
+    public function clearAvatar(Request $request)
+    {
+        $tempFile = UserRepository::AVATAR_PATH . $request->user()->id . '_temp.jpg';
+        if (file_exists($tempFile)) {
+            $status = unlink($tempFile);
+            if ($status) {
+                return response()->json(['status' => true]);
+            }
+        }
+    }
+
     public function changePassword(Request $request)
     {
         $this->validate($request, [

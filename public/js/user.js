@@ -6,16 +6,16 @@ function User() {
     var _body = $('body');
 
     var _changeAvatar = function () {
-        $('#myAvatar').attr('src', null);
         var _form = $('#uploadAvatarForm');
         LinkNoter.ajax({
             url: '/change-avatar',
             method: 'POST',
             data: _form.serialize(),
+            async: false,
             success: function (res) {
                 if (res.status == true) {
                     $('#modalProfile').modal('hide');
-                    $('#myAvatar').attr('src', res.avatar);
+                    $('#myAvatar').attr('src', res.avatar + '?' +(new Date()).getTime());
                 }
             }
         })
@@ -49,9 +49,14 @@ function User() {
             });
 
         _body
+            .on('hide.bs.modal', '#modalProfile', function() {
+                $('#modalProfile').remove();
+                _body.removeClass('modal-open');
+                $('.modal-backdrop').remove();
+            })
             .on('click', '.loadModalProfile', function () {
                 LinkNoter.ajax({
-                    url: '/open-modal-profile',
+                    url: '/open-modal-avatar',
                     method: 'GET',
                     success: function (res) {
                         _body.append(res);
@@ -63,7 +68,7 @@ function User() {
                             method: 'POST',
                             complete: function (res) {
                                 var file = res.responseJSON.fileInfo;
-                                _form.find('.preview img').attr('src', file.asset_path);
+                                _form.find('.preview img').attr('src', file.asset_path + '?' +(new Date()).getTime());
                                 $('#uploadHintText').hide();
                                 _form.find('.modal-options-change').show();
                             }
@@ -76,7 +81,24 @@ function User() {
                 _changeAvatar();
             })
             .on('click', '.modal-options-change-btn', function () {
-                $('#uploadAvatarForm').find('.preview img').attr('src', '/image/cloud.png');
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                    }
+                });
+                LinkNoter.ajax({
+                    url: '/clear-avatar',
+                    method: 'POST',
+                    data: '',
+                    success: function (res) {
+                        if (res.status == true) {
+                            $('#uploadAvatarForm').find('.preview img').attr('src', '/image/cloud.png');
+                            $('#uploadHintText').show();
+                            $('#modalProfile').find('.modal-options-change').hide();
+                        }
+                    }
+                });
+
             });
     };
 }

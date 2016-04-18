@@ -177,3 +177,7 @@ body {
   cursor: pointer;
   transition: background .15s ease,border .15s ease;
 }
+
+#modalProfile .modal-options {
+  padding: 20px;
+}

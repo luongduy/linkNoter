@@ -22,7 +22,7 @@
 
                 <div class="modal-options">
                     <div class="modal-options-change" style="display: none;">
-                        <a class="modal-options-change-btn">Clear and add another one</a>
+                        <a class="modal-options-change-btn">Clear and add another avatar</a>
                     </div>
 
                     <div class="modal-options-toobig tab-page" style="display: none;">

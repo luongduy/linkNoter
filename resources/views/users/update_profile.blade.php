@@ -84,6 +84,7 @@
     <link href="{!! asset('upload/jquery.fileupload.css') !!}" media="all" rel="stylesheet" type="text/css" />
 @endsection
 @section('scripts')
+    <meta name="_token" content="{{ csrf_token() }}" />
     <script src="{!! asset('upload/jquery.ui.widget.js') !!}"></script>
     <script src="{!! asset('upload/jquery.fileupload.js') !!}"></script>
     <script src="{!! asset('js/user.js') !!}"></script>
