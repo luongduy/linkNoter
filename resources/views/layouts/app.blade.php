@@ -18,6 +18,10 @@
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <link href="{!! asset('css/app.css') !!}" media="all" rel="stylesheet" type="text/css" />
+
+    <link href="{!! asset('emoji/lib/css/nanoscroller.css') !!}" media="all" rel="stylesheet" type="text/css" />
+    <link href="{!! asset('emoji/lib/css/emoji.css') !!}" media="all" rel="stylesheet" type="text/css" />
+
     {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
     @yield('css')
 

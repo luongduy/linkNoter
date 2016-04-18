@@ -1,5 +1,6 @@
 
 @extends('layouts.app')
+
 @section('content')
 
 <div class="container-fluid">
@@ -62,10 +63,12 @@
     <form id="post-comment-form" method="POST" action="{{ url('links/'.$link->id.'/postComment') }}">
         {!! csrf_field() !!}
         <div class="form-group">
-            <textarea class="form-control" rows="4" name="content" placeholder="Join the discussion..."></textarea>
+            <p class="lead emoji-picker-container">
+                <textarea class="form-control textarea-control" rows="4" placeholder="Join the discussion..." data-emojiable="true" name="content"></textarea>
+           </p>
         </div>
         <div class="form-group">
-            <button class="btn btn-primary" type=submit>Post</input>
+            <button class="btn btn-primary" type=submit>Post</button>
         </div>
   </form>
 </div>
@@ -111,8 +114,11 @@
     @endforeach
     <br/>
 </div>
-
-
+<div class="container-fluid">
+    <p class="lead emoji-picker-container">
+            <textarea class="form-control textarea-control" rows="3" placeholder="Textarea with emoji image input" data-emojiable="true"></textarea>
+    </p>
+</div>
 
 @endsection
 
@@ -120,4 +126,12 @@
     <meta name="_token" content="{{ csrf_token() }}" />
     <script src="{!! asset('js/commentView.js') !!}"></script>
     <script src="{!! asset('js/common.js') !!}"></script>
+
+    <script src="{!! asset('emoji/lib/js/nanoscroller.min.js') !!}"></script>
+    <script src="{!! asset('emoji/lib/js/tether.min.js') !!}"></script>
+    <script src="{!! asset('emoji/lib/js/config.js') !!}"></script>
+    <script src="{!! asset('emoji/lib/js/util.js') !!}"></script>
+    <script src="{!! asset('emoji/lib/js/jquery.emojiarea.js') !!}"></script>
+    <script src="{!! asset('emoji/lib/js/emoji-picker.js') !!}"></script>
+
 @endsection

@@ -45,6 +45,8 @@ Route::group(['middleware' => ['web']], function () {
 	Route::post('/links/{link}/comments/{comment}/increaseVote', 'LinkController@increaseCommentVote');
 	Route::post('/links/{link}/comments/{comment}/decreaseVote', 'LinkController@decreaseCommentVote');
 
+	Route::get('/links/lib/img//{file}', 'ImageController@getEmojiImage');
+
     Route::get('/categories/{cid?}', 'CategoryController@index');
     Route::post('/categories/storeCategory', 'CategoryController@storeCategory');
     Route::get('/categories/destroyCategory/{cid?}', 'CategoryController@destroyCategory');
