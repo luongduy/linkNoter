@@ -9745,7 +9745,15 @@ namespace {
 
 
     class Route extends \Illuminate\Support\Facades\Route{
-        
+
+        /**
+         * @return void
+         */
+        public static function auth()
+        {
+            return \Illuminate\Routing\Router::auth();
+        }
+
         /**
          * Register a new GET route with the router.
          *

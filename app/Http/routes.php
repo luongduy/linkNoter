@@ -26,6 +26,7 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/', function () {
     	return view('welcome');
 	});
+
 	// link page's routes
 	Route::get('/links', 'LinkController@index');
 	Route::post('/links', 'LinkController@store');
@@ -52,6 +53,19 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/categories/editNote/{id}', 'CategoryController@editNote');
     Route::get('/categories/destroyNote/{id}', 'CategoryController@destroyNote');
 
+    //User processing Routes...
+    Route::get('/update-profile', 'UserController@updateProfile');
+    Route::post('/profile', 'UserController@updateProfile');
+    Route::post('/password', 'UserController@changePassword');
+    Route::post('/change-avatar', 'UserController@changeAvatar');
+    Route::post('/add-avatar', 'UserController@addAvatar');
+    Route::post('/upload-file', 'FileUploadController@doUploadSingle');
+    Route::get('/open-modal-profile', function() {
+        return view('users.modal_profile');
+    });
+
 	// Authentication Routes...
 	Route::auth();
+
+
 });

@@ -3,7 +3,9 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Note and share useful links">
+    <meta name="keywords" content="link noter">
 
     <title>Links Noter</title>
 
@@ -17,18 +19,8 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <link href="{!! asset('css/app.css') !!}" media="all" rel="stylesheet" type="text/css" />
     {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
-    
-    <style>
-        body {
-            font-family: 'Lato';
-            width:90%;
-            margin:auto;
-        }
+    @yield('css')
 
-        .fa-btn {
-            margin-right: 6px;
-        }
-    </style>
 </head>
 <body id="app-layout">
     <nav class="navbar navbar-default">
@@ -71,6 +63,7 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ url('/update-profile') }}"><i class="fa fa-btn fa-edit"></i>Update Profile</a></li>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                             </ul>
                         </li>
@@ -84,7 +77,7 @@
 
     <!-- JavaScripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script src="{!! asset('js/notify.js') !!}"></script>
     <script src="{!! asset('js/notify.min.js') !!}"></script>
     <script src="{!! asset('js/common.js') !!}"></script>

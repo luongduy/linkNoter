@@ -1,3 +1,13 @@
+body {
+  font-family: 'Lato';
+  width:90%;
+  margin:auto;
+}
+
+.fa-btn {
+  margin-right: 6px;
+}
+
 #LA .dropdown-menu .container-fluid {
   width: 600px;
   padding-top: 10px;
@@ -134,4 +144,36 @@
 
 #CA .dropdown-menu .container-fluid {
   padding: 10px;
+}
+
+#modalProfile .preview {
+  border: 2px dashed #dee3e7;
+  border-radius: 3px;
+  padding: 15px;
+  position: relative;
+}
+
+#modalProfile .fileupload-buttonbar p {
+  margin-top: 20px;
+  margin-bottom: 0;
+  color: #8495a4;
+  font-size: 16px;
+}
+
+#modalProfile .fileupload-buttonbar p b {
+  font-size: 28px;
+  color: #677683;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 10px;
+}
+
+#modalProfile .modal-content {
+  text-align: center;
+}
+
+#modalProfile .fileupload-buttonbar {
+  background: #f0f2f4;
+  cursor: pointer;
+  transition: background .15s ease,border .15s ease;
 }

@@ -11,7 +11,7 @@ use App\Http\Requests;
 
 class CategoryController extends Controller
 {
-    //TODO write test case
+    //TODO Currently disable Notes function, discussing more!!!
 
     protected $categories;
     protected $notes;
@@ -150,6 +150,7 @@ class CategoryController extends Controller
             return response()->json(['status' => false]);
         }
 
+        /**@var $category Category */
         $note = $category->notes()->create([
                 'title' => $request->input('title'),
                 'content' => $request->input('content'),
