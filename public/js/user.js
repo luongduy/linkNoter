@@ -31,7 +31,7 @@ function User() {
                     data: _form.serialize(),
                     success: function (res) {
                         if (res.status == true) {
-                            $.notify("Well done! Your changes are ... changed ;)", {
+                            $.singletonNotify("Well done! Your changes are ... changed ;)", {
                                 position: "bottom center",
                                 className: "success"
                             })
@@ -39,7 +39,7 @@ function User() {
                     },
                     error: function (xhr, textStatus, e) {
                         if (xhr.status == 422) {
-                            $.notify(LinkNoter.getFirstValidationError(xhr.responseJSON), {
+                            $.singletonNotify(LinkNoter.getFirstValidationError(xhr.responseJSON), {
                                 position: "bottom center",
                                 className: "error"
                             })

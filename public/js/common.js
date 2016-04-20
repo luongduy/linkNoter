@@ -18,7 +18,6 @@ var LinkNoter = {
     getFirstValidationError: function (errors) {
         return arrayValues(errors)[0];
     }
-
 };
 
 function convertDateToUTC(date) {
@@ -41,3 +40,8 @@ function readFileClient(input, previewSelector) {
         reader.readAsDataURL(input.files[0]);
     }
 }
+
+$.singletonNotify = function(elem, data, options) {
+    $('.notifyjs-corner').empty();
+    return $.notify(elem, data, options);
+};
