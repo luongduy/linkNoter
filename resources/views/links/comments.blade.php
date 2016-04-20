@@ -63,9 +63,9 @@
     <form id="post-comment-form" method="POST" action="{{ url('links/'.$link->id.'/postComment') }}">
         {!! csrf_field() !!}
         <div class="form-group">
-            <p class="lead emoji-picker-container">
-                <textarea class="form-control textarea-control" rows="4" placeholder="Join the discussion..." data-emojiable="true" name="content"></textarea>
-           </p>
+            <div class="emoji-picker-container">
+                <textarea class="form-control textarea-control" rows="4" placeholder="Join the discussion..." name="content"></textarea>
+           </div>
         </div>
         <div class="form-group">
             <button class="btn btn-primary" type=submit>Post</button>
@@ -105,7 +105,7 @@
                 @endif
             </div>
         </div>
-        <div class="col-sm-11">
+        <div class="col-sm-11 comment">
             <p class="comment-box"> {{ $comment->content }}</p>
         </div>
     </div>
@@ -113,11 +113,6 @@
     <?php $i++; ?>
     @endforeach
     <br/>
-</div>
-<div class="container-fluid">
-    <p class="lead emoji-picker-container">
-            <textarea class="form-control textarea-control" rows="3" placeholder="Textarea with emoji image input" data-emojiable="true"></textarea>
-    </p>
 </div>
 
 @endsection
@@ -127,11 +122,6 @@
     <script src="{!! asset('js/commentView.js') !!}"></script>
     <script src="{!! asset('js/common.js') !!}"></script>
 
-    <script src="{!! asset('emoji/lib/js/nanoscroller.min.js') !!}"></script>
-    <script src="{!! asset('emoji/lib/js/tether.min.js') !!}"></script>
-    <script src="{!! asset('emoji/lib/js/config.js') !!}"></script>
-    <script src="{!! asset('emoji/lib/js/util.js') !!}"></script>
-    <script src="{!! asset('emoji/lib/js/jquery.emojiarea.js') !!}"></script>
-    <script src="{!! asset('emoji/lib/js/emoji-picker.js') !!}"></script>
+    <script src="{!! asset('emoji-decode/jquery.emoji.js') !!}"></script>
 
 @endsection
