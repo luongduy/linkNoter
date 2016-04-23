@@ -56,7 +56,6 @@
     </div>
 </div>
 
-<h3> {{$comments->count()}} Comments</h3>
 <hr>
 
 <div class="container-fluid">
@@ -73,46 +72,66 @@
   </form>
 </div>
 
-<div class="container-fluid">
-    <?php $i = 0; ?>
-    @foreach ($comments as $comment)
-    <div class="row">
-        <span id="{{$comment->id}}" class="comment-id"></span>
-        <div class="col-sm-1">
-            <div >
-                @if ($votes[$i] == 1)
-                <button class = "btn btn-default center-block voteButton comment-voteUp" type = "button">
-                         <span class="glyphicon glyphicon-chevron-up voted"></span>
-                </button> 
-                @else
-                <button class = "btn btn-default center-block voteButton comment-voteUp" type = "button">
-                         <span class="glyphicon glyphicon-chevron-up"></span>
-                </button> 
-                @endif
-            </div>
-            <div  align="center">
-                <label class="voteLabel"> {{$comment->voted}} </label> <br />
-            </div>
-            <div>
-                @if ($votes[$i] == -1)
-                <button class = "btn btn-default center-block voteButton comment-voteDown" type = "button">
-                         <span class="glyphicon glyphicon-chevron-down voted"></span>
-                </button>
-                @else
-                <button class = "btn btn-default center-block voteButton comment-voteDown" type = "button">
-                         <span class="glyphicon glyphicon-chevron-down"></span>
-                </button>
-                @endif
-            </div>
+<div id="CM-DIV" class="container-fluid">
+<div class="row">
+    <div class="col-sm-12">
+        <h3> {{$comments->count()}} Comments</h3>
+        <hr>
+    </div>
+</div>
+<?php $i = 0; ?>
+@foreach ($comments as $comment)
+<div class="row">
+    <span id="{{$comment->id}}" class="comment-id"></span>
+    <div class="col-sm-1">
+        <div >
+            @if ($votes[$i] == 1)
+            <button class = "btn btn-default center-block voteButton comment-voteUp" type = "button">
+                     <span class="glyphicon glyphicon-chevron-up voted"></span>
+            </button> 
+            @else
+            <button class = "btn btn-default center-block voteButton comment-voteUp" type = "button">
+                     <span class="glyphicon glyphicon-chevron-up"></span>
+            </button> 
+            @endif
         </div>
-        <div class="col-sm-11 comment">
-            <p class="comment-box"> {{ $comment->content }}</p>
+        <div  align="center">
+            <label class="voteLabel"> {{$comment->voted}} </label> <br />
+        </div>
+        <div>
+            @if ($votes[$i] == -1)
+            <button class = "btn btn-default center-block voteButton comment-voteDown" type = "button">
+                     <span class="glyphicon glyphicon-chevron-down voted"></span>
+            </button>
+            @else
+            <button class = "btn btn-default center-block voteButton comment-voteDown" type = "button">
+                     <span class="glyphicon glyphicon-chevron-down"></span>
+            </button>
+            @endif
         </div>
     </div>
-    <hr class="linkHr">
-    <?php $i++; ?>
-    @endforeach
-    <br/>
+    <div class="col-sm-1">
+        <div class="thumbnail">
+            <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+        </div>
+    </div>
+
+    <div class="col-sm-10">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <strong>{{ $comment->user->name }}</strong> <span class="text-muted">commented <span class="createdAtSpan ">{{$comment->created_at}} </span> ago</span>
+            </div>
+            <div class="panel-body comment">
+                <p class="comment-box"> {{ $comment->content }}</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<?php $i++; ?>
+@endforeach
+
 </div>
 
 @endsection

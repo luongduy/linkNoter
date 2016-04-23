@@ -67,6 +67,35 @@ body {
   margin-right: 5px;
 }
 
+#CM-DIV .thumbnail {
+    padding:0px;
+}
+#CM-DIV .panel {
+  position:relative;
+}
+#CM-DIV .panel>.panel-heading:after,.panel>.panel-heading:before{
+  position:absolute;
+  top:11px;left:-16px;
+  right:100%;
+  width:0;
+  height:0;
+  display:block;
+  content:" ";
+  border-color:transparent;
+  border-style:solid solid outset;
+  pointer-events:none;
+}
+#CM-DIV .panel>.panel-heading:after{
+  border-width:7px;
+  border-right-color:#D9EDF7;
+  margin-top:1px;
+  margin-left:2px;
+}
+#CM-DIV .panel>.panel-heading:before{
+  border-right-color:#ddd;
+  border-width:8px;
+}
+
 #CA .categoryList .categoryWrap {
   position: relative;
   margin-right: 15px;
