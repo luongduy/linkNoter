@@ -59,6 +59,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/update-profile', 'UserController@updateProfile');
     Route::post('/profile', 'UserController@updateProfile');
     Route::post('/password', 'UserController@changePassword');
+    Route::get('/activities', 'UserController@myActivities');
     Route::post('/change-avatar', 'UserController@changeAvatar');
     Route::post('/clear-avatar', 'UserController@clearAvatar');
     Route::post('/add-avatar', 'UserController@addAvatar');

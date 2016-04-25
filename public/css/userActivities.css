@@ -1,0 +1,25 @@
+#MA .panel {
+  max-height: 400px;
+  overflow: scroll;
+}
+
+#MA .panel-body .detail {
+  margin-top: 7px;
+  padding: 5px;
+}
+
+#MA .panel-body .voteandview span {
+  margin-left : 4px;
+}
+
+#MA .panel-body .linkDetail .voted {
+  padding: 10px;
+}
+
+#MA .panel-body .linkDetail .viewed {
+  padding: 10px;
+}
+
+#MA .panel-body .detail .commentContent {
+
+}

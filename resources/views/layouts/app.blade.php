@@ -58,12 +58,17 @@
                         <li><a href="{{ url('/login') }}">Login</a></li>
                         <li><a href="{{ url('/register') }}">Register</a></li>
                     @else
+                        <li><a id="my-mentions" href="#"><span>2</span>&nbsp;&nbsp;<i class="fa fa-bullhorn"></i></a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                @if (Auth::user()->avatar_path)
+                                    <img class="topbar-avatar" src="{{ request()->getBaseUrl()}} {{Auth::user()->avatar_path}}" />
+                                @endif
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ url('/activities') }}"><i class="fa fa-btn fa-align-left"></i>Activities</a></li>
                                 <li><a href="{{ url('/update-profile') }}"><i class="fa fa-btn fa-edit"></i>Update Profile</a></li>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                             </ul>

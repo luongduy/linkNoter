@@ -210,3 +210,19 @@ body {
 #modalProfile .modal-options {
   padding: 20px;
 }
+
+#my-mentions span {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  color: #E23636;
+  background-color: #555555;
+  padding: 0px 6px 0px 6px;
+  font-size: 0.6em;
+  border-radius: 20px;
+}
+
+.topbar-avatar {
+  max-width: 30px;!important;max-height: 20px;
+}
+

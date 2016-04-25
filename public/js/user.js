@@ -68,7 +68,7 @@ function User() {
                             method: 'POST',
                             complete: function (res) {
                                 var file = res.responseJSON.fileInfo;
-                                _form.find('.preview img').attr('src', file.asset_path + '?' +(new Date()).getTime());
+                                _form.find('.preview img').attr('src', file.asset_path + '?' + (new Date()).getTime());
                                 $('#uploadHintText').hide();
                                 _form.find('.modal-options-change').show();
                             }

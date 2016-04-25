@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @package App
  *
  * @property integer $id
+ * @property string $avatar_path
  * @property string $name
  * @property string $email
  * @property string $password
