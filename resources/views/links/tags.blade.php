@@ -7,7 +7,7 @@
             <div class = "input-group">
                <input id="searchTextbox" type = "text" class = "form-control" placeholder="Search">
                <span class = "input-group-btn">
-                  <button class = "btn btn-default" type = "button">
+                  <button class = "btn btn-primary" type = "button">
                      <span class="glyphicon glyphicon-search"></span>
                   </button>
                </span>
@@ -15,7 +15,7 @@
         </div>
         <div class = "col-sm-1">    
             <div class="btn-group">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-plus"></span>&nbsp New
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-plus"></span>&nbsp New
                 </button>
                 <ul class="dropdown-menu" role="menu">
                     <li>
@@ -35,7 +35,7 @@
                                             <div class = "input-group">
                                                 <input type="text" class="form-control" id="tagTextbox" placeholder="Tag ...">
                                                 <span class = "input-group-btn">
-                                                    <button id="addTagButton" class="btn btn-default" type="button">
+                                                    <button id="addTagButton" class="btn btn-primary" type="button">
                                                         <span class="glyphicon glyphicon-plus-sign"></span>
                                                      </button>
                                                 </span>
@@ -65,7 +65,7 @@
 
         </div>
         <div class = "col-sm-1">    
-            <a href="{{ url('/links/tags') }}" class = "btn btn-default">
+            <a href="{{ url('/links/tags') }}" class = "btn btn-primary">
                  <span class="glyphicon glyphicon-tags"></span>&nbsp Tag
             </a>
         </div>

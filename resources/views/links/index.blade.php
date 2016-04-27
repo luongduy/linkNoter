@@ -2,6 +2,8 @@
 @extends('layouts.app')
 @section('content')
 <div class="container-fluid" id="LA">
+    <!--<div class="panel panel-warning">
+    <div class="panel-body"> !-->
     <div class="row">
         <div class = "col-sm-5">
             <form id="searchForm" action="{{ url('links/doSearch') }}" method="POST">
@@ -9,7 +11,7 @@
                 <div class = "input-group">
                    <input id="searchTextbox" type = "text" name="searchText" class = "form-control" placeholder="Search">
                    <span class = "input-group-btn">
-                      <button id="searchButton" class = "btn btn-default" type="button">
+                      <button id="searchButton" class = "btn btn-primary" type="button">
                          <span class="glyphicon glyphicon-search"></span>
                       </button>
                    </span>
@@ -18,7 +20,7 @@
         </div>
         <div class = "col-sm-1">    
             <div class="btn-group">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-plus"></span>&nbsp New
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-plus"></span>&nbsp New
                 </button>
                 <ul class="dropdown-menu" role="menu">
                     <li>
@@ -38,7 +40,7 @@
                                             <div class = "input-group">
                                                 <input type="text" class="form-control" id="tagTextbox" placeholder="Tag ...">
                                                 <span class = "input-group-btn">
-                                                    <button id="addTagButton" class="btn btn-default" type="button">
+                                                    <button id="addTagButton" class="btn btn-primary" type="button">
                                                         <span class="glyphicon glyphicon-plus-sign"></span>
                                                      </button>
                                                 </span>
@@ -49,7 +51,7 @@
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="form-group">
-                                            <button id="saveLinkButton" class="btn btn-info"  type="button"><span class="glyphicon glyphicon-save"></span>&nbsp Save</button>
+                                            <button id="saveLinkButton" class="btn btn-primary"  type="button"><span class="glyphicon glyphicon-save"></span>&nbsp Save</button>
                                         </div>
                                     </div>
                                 </div>
@@ -68,74 +70,47 @@
 
         </div>
         <div class = "col-sm-1">    
-            <a href="{{ url('/links/tags') }}" class = "btn btn-default">
+            <a href="{{ url('/links/tags') }}" class = "btn btn-primary">
                  <span class="glyphicon glyphicon-tags"></span>&nbsp Tag
             </a>
         </div>
 
-     </div>
+     </div> 
+     <!-- </div> </div> !-->
 </div>
 <hr>
-<div class="container-fluid">
-    <?php $i = 0; ?>
-    @foreach ($links as $link)
-    <div class="row">
-        <div class="col-sm-1">
-            <div >
-                @if ($votes[$i] == 1)
-                <button class = "btn btn-default center-block voteButton voteUp" type = "button">
-                         <span class="glyphicon glyphicon-chevron-up voted"></span>
-                </button> 
-                @else
-                <button class = "btn btn-default center-block voteButton voteUp" type = "button">
-                         <span class="glyphicon glyphicon-chevron-up"></span>
-                </button> 
-                @endif
+<div id="link-panel" class="container-fluid">
+<div class="row">
+<div class="col-sm-12">
+            <div class="panel with-nav-tabs panel-primary">
+                <div class="panel-heading">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#tab1primary" data-toggle="tab">Newest</a></li>
+                            <li><a href="#tab2primary" data-toggle="tab">Most voted</a></li>
+                            <li><a href="#tab3primary" data-toggle="tab">Most viewed</a></li>
+                        </ul>
+                </div>
+                <div class="panel-body">
+                    <div class="tab-content">
+                        <div class="tab-pane fade in active" id="tab1primary">
+                            @include('links.list', ['links' => $links_sort_by_time, 'votes' => $votes_sort_by_time])
+                        </div>
+                        <div class="tab-pane fade" id="tab2primary">
+                            @include('links.list', ['links' => $links_sort_by_vote, 'votes' => $votes_sort_by_vote])
+                        </div>
+                        <div class="tab-pane fade" id="tab3primary">
+                            @include('links.list', ['links' => $links_sort_by_view, 'votes' => $votes_sort_by_view])
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div  align="center">
-                <label class="voteLabel"> {{$link->voted}} </label> <br />
-            </div>
-            <div>
-                @if ($votes[$i] == -1)
-                <button class = "btn btn-default center-block voteButton voteDown" type = "button">
-                         <span class="glyphicon glyphicon-chevron-down voted"></span>
-                </button>
-                @else
-                <button class = "btn btn-default center-block voteButton voteDown" type = "button">
-                         <span class="glyphicon glyphicon-chevron-down"></span>
-                </button>
-                @endif
-            </div>
-        </div>
-        <div class="col-sm-11">
-            <br />
-            <!-- <a class="link" href="{{$link->href}}">{{$link->title}}</a> -->
-            <a class="link" href="{{ url('links/'.$link->id) }}">{{$link->title}}</a>
-            <label id="{{$link->id}}" class="label label-warning numberOfViewLabel"> {{$link->viewed}} views</label>
-            <br />
-            @foreach ($link->tags as $tag)
-                <a href="{{ url('links/tags/'.$tag->name) }}" class = "btn btn-info tagButton">
-                    {{$tag->name}}
-                </a>
-            @endforeach
-            @if ((Auth::user() !== null) and ($link->user->name == Auth::user()->name))
-                <span class="deleteLink"> <span class="glyphicon glyphicon-trash"> </span> <a href=""> delete</a> </span>
-                <span class="linkOwnerSpan"> <span class="glyphicon glyphicon-user"> </span> <a href="#"> You </a>| </span> 
-                <span class="linkOwnerSpan"> <span class="glyphicon glyphicon-time"> </span> <span class="createdAtSpan "> {{$link->created_at}} </span> | </span>
-            @else
-                <span class="linkOwnerSpan" style="clear: right"> <span class="glyphicon glyphicon-user"> </span> <a href="#"> {{$link->user->name}} </a></span> 
-                <span class="linkOwnerSpan" > <span class="glyphicon glyphicon-time"> </span> <span class="createdAtSpan ">{{$link->created_at}} </span> | </span>
-
-            @endif
-
-        </div>
-    </div>
-    <hr class="linkHr">
-    <?php $i++; ?>
-    @endforeach
-    <br/>
 </div>
+</div></div>
 
+@endsection
+
+@section('css')
+    <link href="{!! asset('css/linkView.css') !!}" media="all" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('scripts')

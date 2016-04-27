@@ -39,11 +39,20 @@ class LinkController extends Controller
     }
 
 	public function index(Request $request) {
-		$link_collection = $this->links->getAllLinks();
-		$vote_arr = $this->links->getVotes($link_collection, $request->user());
+		$user = $request->user();
+		$link_collection_time = $this->links->getAllLinks('time');
+		$vote_arr_time = $this->links->getVotes($link_collection_time, $user);
+		$link_collection_vote = $this->links->getAllLinks('vote');
+		$vote_arr_vote = $this->links->getVotes($link_collection_vote, $user);
+		$link_collection_view = $this->links->getAllLinks('view');
+		$vote_arr_view = $this->links->getVotes($link_collection_view, $user);
 		return view('links.index', [
-			'links' => $link_collection,
-			'votes' => $vote_arr
+			'links_sort_by_time' => $link_collection_time,
+			'votes_sort_by_time' => $vote_arr_time,
+			'links_sort_by_vote' => $link_collection_vote,
+			'votes_sort_by_vote' => $vote_arr_vote,
+			'links_sort_by_view' => $link_collection_view,
+			'votes_sort_by_view' => $vote_arr_view,
 		]);
 	}
 	// save new link to database
@@ -80,11 +89,20 @@ class LinkController extends Controller
 	}
 	// return links that have $tag
 	public function getTag(Request $request, $tag) {
-		$link_collection = $this->tags->getTagByName($tag)->links;
-		$votecomment_arr = $this->links->getVotes($link_collection, $request->user());
+		$user = $request->user();
+		$link_collection_time = $this->tags->getLinksByTagName($tag, 'time');
+		$vote_arr_time = $this->links->getVotes($link_collection_time, $user);
+		$link_collection_vote = $this->tags->getLinksByTagName($tag, 'vote');
+		$vote_arr_vote = $this->links->getVotes($link_collection_vote, $user);
+		$link_collection_view = $this->tags->getLinksByTagName($tag, 'view');
+		$vote_arr_view = $this->links->getVotes($link_collection_view, $user);
 		return view('links.index', [
-			'links' => $link_collection,
-			'votes' => $votecomment_arr
+			'links_sort_by_time' => $link_collection_time,
+			'votes_sort_by_time' => $vote_arr_time,
+			'links_sort_by_vote' => $link_collection_vote,
+			'votes_sort_by_vote' => $vote_arr_vote,
+			'links_sort_by_view' => $link_collection_view,
+			'votes_sort_by_view' => $vote_arr_view,
 		]);
 	}
 	// return comments page

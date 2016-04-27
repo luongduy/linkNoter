@@ -21,8 +21,15 @@ class LinkRepository
                     ->orderBy('created_at', 'asc')
                     ->get();
     }
-    public function getAllLinks() {
-        return Link::orderBy('created_at', 'desc')->get();
+    public function getAllLinks($sortedBy) {
+        switch ($sortedBy) {
+            case 'time':
+                return Link::orderBy('created_at', 'desc')->get();
+            case 'vote':
+                return Link::orderBy('voted', 'desc')->get();
+            case 'view':
+                return Link::orderBy('viewed', 'desc')->get();
+        }
     }
     public function getVotes(Collection $links, User $user = null) {
         $arr = array();

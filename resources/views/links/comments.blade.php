@@ -112,14 +112,14 @@
     </div>
     <div class="col-sm-1">
         <div class="thumbnail">
-            <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+            <img class="img-responsive user-photo" src="{{'/avatars/2.jpg'}}">
         </div>
     </div>
 
     <div class="col-sm-10">
         <div class="panel panel-info">
             <div class="panel-heading">
-                <strong>{{ $comment->user->name }}</strong> <span class="text-muted">commented <span class="createdAtSpan ">{{$comment->created_at}} </span> ago</span>
+                <strong>{{ $comment->user->name }}</strong> <span class="text-muted">commented <span class="createdAtSpan ">{{$comment->created_at}} </span> </span>
             </div>
             <div class="panel-body comment">
                 <p class="comment-box"> {{ $comment->content }}</p>
@@ -134,6 +134,10 @@
 
 </div>
 
+@endsection
+
+@section('css')
+    <link href="{!! asset('css/commentView.css') !!}" media="all" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('scripts')
