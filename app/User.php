@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Collection;
 
 /**
  * Class User
@@ -16,6 +17,10 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property string $remember_token
  * @property string $created_at
  * @property string $updated_at
+ * @property Collection|Link[] $links
+ * @property Collection|Comment[] $comments
+ * @property Collection|Vote[] $votes
+ * @property Collection|Category[] $categories
  */
 
 class User extends Authenticatable

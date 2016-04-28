@@ -1,4 +1,4 @@
-#MA .panel {
+#MA .panel .panel-body {
   max-height: 400px;
   overflow: scroll;
 }

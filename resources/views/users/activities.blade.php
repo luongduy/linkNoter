@@ -5,6 +5,24 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
+                    <div class="col-md-3">
+                        <p>
+                            @if ($user['avatar_path'])
+                                <img class="topbar-avatar" src="{{url($user['avatar_path'])}}" />
+                            @endif
+                            {{ $user['name'] }}
+                        </p>
+                    </div>
+                    <div class="col-md-9"></div>
+                </div>
+            </div>
+        </div>
+
+        <hr/>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <h3 class="panel-title">Your links</h3>

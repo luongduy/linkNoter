@@ -115,11 +115,11 @@ class UserController extends Controller
 
     }
 
-    public function myActivities(Request $request)
+    public function activity($userId)
     {
-        $user  = $request->user();
+        $user = $this->userRepo->findOne($userId);
 
-        return view('users.my_activities', [
+        return view('users.activities', [
             'user'  => $user,
             'links' => $user->links,
             'comments' => $user->comments,
