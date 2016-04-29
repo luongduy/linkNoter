@@ -58,6 +58,9 @@ body {
 .voted{
   color:orange;
 }
+.repu{
+  color: green;
+}
 .deleteLink {
   float:right;
   clear:right;
@@ -183,7 +186,7 @@ body {
   padding: 20px;
 }
 
-#my-mentions span {
+#myNotis span {
   position: absolute;
   top: 2px;
   left: 2px;

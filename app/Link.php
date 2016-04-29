@@ -2,9 +2,7 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
-
-class Link extends Model
+class Link extends AppModel
 {
 	public function user() {
 		return $this->belongsTo('App\User');

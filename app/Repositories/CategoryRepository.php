@@ -59,7 +59,8 @@ class CategoryRepository
      */
     public function findOne($id)
     {
-        return Category::query()->where('id', $id)->first();
+        $query = Category::query()->where('id', $id);
+        return $query->firstOrFail();
     }
 
 }

@@ -3,7 +3,6 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Tag
@@ -19,7 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property $updated_at
  * @property Collection|Link[] $links
  */
-class Tag extends Model
+class Tag extends AppModel
 {
 	public function links() {
 		return $this->belongsToMany('App\Link');

@@ -124,6 +124,7 @@ class UserController extends Controller
             'links' => $user->links,
             'comments' => $user->comments,
             'tags' => $this->userRepo->getTags($user),
+            'totalRepu' => $this->userRepo->getReputation($user),
         ]);
     }
 

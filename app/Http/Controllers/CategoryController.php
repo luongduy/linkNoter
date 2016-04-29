@@ -20,8 +20,8 @@ class CategoryController extends Controller
     {
         $this->middleware('auth');
         $this->categories = CategoryRepository::getInstance();
-        $this->notes = NoteRepository::getInstance();
-        $user = $request->user();
+        $this->notes      = NoteRepository::getInstance();
+        $user             = $request->user();
         if ($user) {
             $this->notes->setUser($user);
         }
@@ -33,37 +33,34 @@ class CategoryController extends Controller
      * @param Request $request
      * @return Category | null
      */
-    protected function getCategoryFromRequest(Request $request, $cid) {
+    protected function getCategoryFromRequest(Request $request, $cid)
+    {
         if (empty($cid)) {
-            $defaultCategory = $this->categories->forUser($request->user())
-                ->first();
+            $defaultCategory = $this->categories->forUser($request->user())->firstOrFail();
             if ($defaultCategory) {
                 return $defaultCategory;
             }
         }
-        return $this->categories->forUser($request->user())->where('id', $cid)->first();
+
+        return $this->categories->forUser($request->user())->where('id', $cid)->firstOrFail();
     }
 
     public function index(Request $request, $cid = null)
     {
-        $categories = $this->categories->forUser($request->user())
-            ->get();
+        $categories = $this->categories->forUser($request->user())->get();
 
         $currentCate = $this->getCategoryFromRequest($request, $cid);
 
         $notes = null;
         if ($currentCate) {
-            $notes = $this->notes
-                ->forCategory($currentCate->id)
-                ->get();
+            $notes = $this->notes->forCategory($currentCate->id)->get();
         }
 
         return view('categories.index', [
-                'categories' => $categories,
-                'notes' => $notes,
+                'categories'  => $categories,
+                'notes'       => $notes,
                 'currentCate' => $currentCate
-            ]
-        );
+            ]);
 
     }
 
@@ -71,12 +68,12 @@ class CategoryController extends Controller
     {
         $this->validate($request, [
                 'name' => 'required|max:255',
-            ]
-        );
+            ]);
 
         $category = $request->user()->categories()->create([
             'name' => $request->input('name')
         ]);
+
         /** @var $category Category */
 
         return response()->json($category->toArray());
@@ -86,13 +83,10 @@ class CategoryController extends Controller
     {
         $this->validate($request, [
                 'name' => 'required|max:255',
-            ]
-        );
+            ]);
 
-        $category = $this->categories->forUser($request->user())->where('id', $cid)->first();
-        if (!$category) {
-            return 'Page not found';
-        }
+        $category = $this->categories->forUser($request->user())->where('id', $cid)->firstOrFail();
+
         $status = $category->update(['name' => $request->input('name')]);
         if ($status) {
             return redirect('/categories/' . $cid);
@@ -102,32 +96,32 @@ class CategoryController extends Controller
 
     public function destroyCategory(Request $request, $cid = null)
     {
-        $category = $this->categories->forUser($request->user())->where('id', $cid)->first();
+        $category = $this->categories->forUser($request->user())->where('id', $cid)->firstOrFail();
         if ($category) {
             if ($category->delete()) {
                 return redirect('/categories');
             }
         }
-        return 'Page not found';
+
     }
 
     public function editNote($id, Request $request)
     {
         $note = $this->notes->findOne($id);
         if ($note && $request->isMethod('get')) {
-            return view('categories.editNote', [
+            return view('categories.edit_note', [
                     'note' => $note,
-                ]
-            );
+                ]);
         }
 
         if ($request->isMethod('post')) {
             $this->validate($request, [
-                'title' => 'required|max:255', 'content' => 'required'
+                'title'   => 'required|max:255',
+                'content' => 'required'
             ]);
 
             $status = $note->update([
-                'title' => $request->input('title'),
+                'title'   => $request->input('title'),
                 'content' => $request->input('content'),
             ]);
             if ($status) {
@@ -135,27 +129,26 @@ class CategoryController extends Controller
             }
         }
 
-        return 'Page not found';
     }
 
     public function storeNote(Request $request, $cid = null)
     {
         $this->validate($request, [
-                'title' => 'required|max:255', 'content' => 'required',
-            ]
-        );
+                'title'   => 'required|max:255',
+                'content' => 'required',
+            ]);
 
-        $category = $this->categories->forUser($request->user())->where('id', $cid)->first();
-        if  (!$category) {
+        $category = $this->categories->forUser($request->user())->where('id', $cid)->firstOrFail();
+        if (!$category) {
             return response()->json(['status' => false]);
         }
 
         /**@var $category Category */
-        $note = $category->notes()->create([
-                'title' => $request->input('title'),
-                'content' => $request->input('content'),
-            ]);
-        $note = $note->toArray();
+        $note           = $category->notes()->create([
+            'title'   => $request->input('title'),
+            'content' => $request->input('content'),
+        ]);
+        $note           = $note->toArray();
         $note['status'] = true;
 
         return response()->json($note);
@@ -170,6 +163,7 @@ class CategoryController extends Controller
                 return response()->json(['status' => true]);
             }
         }
+
         return response()->json(['status' => false]);
     }
 

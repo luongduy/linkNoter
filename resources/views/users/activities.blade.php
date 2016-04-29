@@ -69,7 +69,7 @@
                                         <span class="commentContent">{{ $comment['content'] }}</span>
                                         <hr/>
                                         <div class="onLink">
-                                            On link: <a class="link" href="{{$comment->link ? $comment->link->href : '#'}}" target="_blank">{{$link['title']}}</a>
+                                            On link: <a class="link" href="{{$comment->link ? $comment->link->href : '#'}}">{{$link['title']}}</a>
                                         </div>
                                     </div>
                                     <div class="moreInfo col-md-2">
@@ -90,7 +90,11 @@
                             <h3 class="panel-title">Your Repultaion</h3>
                         </div>
                         <div class="panel-body">
-                            Doing...
+                            <div class="row detail commentCollection">
+                                <div class="voteandview col-md-12">
+                                    <div class="" style="font-size: 2em"><span class="repu">{{$totalRepu}}</span> Total</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

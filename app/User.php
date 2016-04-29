@@ -2,8 +2,13 @@
 
 namespace App;
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Auth\Authenticatable;
+use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Foundation\Auth\Access\Authorizable;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
+use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
 /**
  * Class User
@@ -21,22 +26,43 @@ use Illuminate\Database\Eloquent\Collection;
  * @property Collection|Comment[] $comments
  * @property Collection|Vote[] $votes
  * @property Collection|Category[] $categories
+ * @property Collection|Notification[] $notifications
  */
-
-class User extends Authenticatable
+class User extends AppModel implements
+    AuthenticatableContract,
+    AuthorizableContract,
+    CanResetPasswordContract
 {
-	public function links() {
-		return $this->hasMany('App\Link');
-	}
-    public function comments() {
+    use Authenticatable, Authorizable, CanResetPassword;
+
+    public function links()
+    {
+        return $this->hasMany('App\Link');
+    }
+
+    public function comments()
+    {
         return $this->hasMany('App\Comment');
     }
-    public function votes() {
+
+    public function votes()
+    {
         return $this->hasMany('App\Vote');
     }
-	public function categories() {
-		return $this->hasMany('App\Category');
-	}
+
+    public function categories()
+    {
+        return $this->hasMany('App\Category');
+    }
+
+    public function notifications()
+    {
+        return $this->hasMany('App\Notification');
+    }
+
+    public function getNotificationCount(){
+        return $this->notifications()->getQuery()->getQuery()->where('is_read', 0)->count();
+    }
 
     /**
      * The attributes that are mass assignable.
@@ -44,7 +70,10 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'avatar_path',
+        'name',
+        'email',
+        'password',
+        'avatar_path',
     ];
 
     /**
@@ -53,6 +82,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
     ];
 }

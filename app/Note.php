@@ -2,9 +2,13 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
-
-class Note extends Model
+/**
+ * Class Note
+ * @package App
+ *
+ * @property Category $category
+ */
+class Note extends AppModel
 {
 	public function category() {
 		return $this->belongsTo('App\Category');

@@ -16,10 +16,12 @@ class NoteRepository
 {
     private static $_instance;
 
-    public static function getInstance() {
+    public static function getInstance()
+    {
         if (self::$_instance === null) {
             self::$_instance = new self();
         }
+
         return self::$_instance;
 
     }
@@ -40,7 +42,7 @@ class NoteRepository
      */
     public function forCategory($categoryId)
     {
-        return Note::query()->where('category_id', $categoryId)->orderBy('created_at', 'desc');
+        return Note::query()->where('category_id', $categoryId)->getQuery()->orderBy('created_at', 'desc');
     }
 
     /**
@@ -49,12 +51,10 @@ class NoteRepository
      */
     public function findOne($id)
     {
-        $note = Note::query()->where('id', $id)->first();
+        $note = Note::query()->where('id', $id)->firstOrFail();
         if ($note) {
             /** @var $note Note */
-            $category = $note->category()->getResults();
-            /** @var $category Category */
-
+            $category = $note->category;
             if ($this->user == $category->user()->getResults()) {
                 return $note;
             }

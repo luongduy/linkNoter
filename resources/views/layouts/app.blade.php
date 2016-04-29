@@ -58,7 +58,19 @@
                         <li><a href="{{ url('/login') }}">Login</a></li>
                         <li><a href="{{ url('/register') }}">Register</a></li>
                     @else
-                        <li><a id="my-mentions" href="#"><span>2</span>&nbsp;&nbsp;<i class="fa fa-bullhorn"></i></a></li>
+                        <li>
+                            <a id="myNotis" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span>{{ Auth::user()->getNotificationCount() }}</span>&nbsp;&nbsp;<i class="fa fa-bullhorn"></i></a>
+                            <ul class="dropdown-menu" role="menu" style="max-width: 400px;">
+                                @foreach(Auth::user()->notifications as $notification)
+                                    <li>
+                                        <a href="#">
+                                            <b class="title">{{$notification['title']}}</b>
+                                            <p class="desc" style="font-size: 11px">{{mb_strimwidth($notification['desc'], 0, 50)}}</p>
+                                        </a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 @if (Auth::user()->avatar_path)
