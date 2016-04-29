@@ -47,9 +47,9 @@
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/links') }}">Links</a></li>
                 </ul>
-                <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/categories') }}">My Notes</a></li>
-                </ul>
+                {{--<ul class="nav navbar-nav">--}}
+                    {{--<li><a href="{{ url('/categories') }}">My Notes</a></li>--}}
+                {{--</ul>--}}
 
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">

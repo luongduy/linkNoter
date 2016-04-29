@@ -16,6 +16,7 @@ function User() {
                 if (res.status == true) {
                     $('#modalProfile').modal('hide');
                     $('#myAvatar').attr('src', res.avatar + '?' +(new Date()).getTime());
+                    location.reload();
                 }
             }
         })
@@ -31,6 +32,7 @@ function User() {
                     data: _form.serialize(),
                     success: function (res) {
                         if (res.status == true) {
+                            location.reload();
                             $.singletonNotify("Well done! Your changes are ... changed ;)", {
                                 position: "bottom center",
                                 className: "success"
