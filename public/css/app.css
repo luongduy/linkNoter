@@ -39,8 +39,7 @@ body {
 
 .linkHr {
   margin: 2px 0px 2px 0px;
-  border-color: gray;
-  
+  /* border-color: gray; */
 }
 
 .numberOfViewLabel {

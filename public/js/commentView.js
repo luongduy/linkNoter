@@ -21,6 +21,9 @@ $(document).ready(function() {
 	$(".link").click(function(e) {
 		increaseView(e.target);
 	});
+	$("#commentSubmitButton").click(function(e) {
+		submitComment();
+	});
 });
 
 function adjustCreatedTime() {
@@ -156,6 +159,20 @@ function decreaseVote(e, type) {
 	    });
 	}
 	$(':focus').blur();
+}
+
+function submitComment() {
+	// submit the form
+	var commentText = $("#commentTextarea").val();
+	if (commentText != '') {
+		$("#postCommentForm").submit();	
+	} else {
+		$("#commentTextarea").focus();
+		$("#commentTextarea").notify("Comment cannot be blank!", {
+				position: "top left",
+				className: "error"
+			});
+	}
 }
 
  function decodeEmoji() {

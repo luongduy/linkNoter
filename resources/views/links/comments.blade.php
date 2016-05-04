@@ -59,15 +59,15 @@
 <hr>
 
 <div class="container-fluid">
-    <form id="post-comment-form" method="POST" action="{{ url('links/'.$link->id.'/postComment') }}">
+    <form id="postCommentForm" method="POST" action="{{ url('links/'.$link->id.'/postComment') }}">
         {!! csrf_field() !!}
         <div class="form-group">
             <div class="emoji-picker-container">
-                <textarea class="form-control textarea-control" rows="4" placeholder="Join the discussion..." name="content"></textarea>
+                <textarea id="commentTextarea" class="form-control textarea-control" rows="4" placeholder="Join the discussion..." name="content"></textarea>
            </div>
         </div>
         <div class="form-group">
-            <button class="btn btn-primary" type=submit>Post</button>
+            <button class="btn btn-primary" type="button" id="commentSubmitButton">Post</button>
         </div>
   </form>
 </div>
@@ -112,7 +112,11 @@
     </div>
     <div class="col-sm-1">
         <div class="thumbnail">
-            <img class="img-responsive user-photo" src="{{'/avatars/2.jpg'}}">
+            @if ($comment->user['avatar_path'])
+                <img id="myAvatar" class="img-responsive user-photo" src="{{url($comment->user->avatar_path)}}" />
+            @else
+                <img id="myAvatar" class="img-responsive user-photo" src="{{ request()->getBaseUrl()}}/image/no-avatar.png" />
+            @endif    
         </div>
     </div>
 

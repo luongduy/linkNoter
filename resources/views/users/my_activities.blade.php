@@ -5,24 +5,6 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="col-md-3">
-                        <p>
-                            @if ($user['avatar_path'])
-                                <img class="topbar-avatar" src="{{url($user['avatar_path'])}}" />
-                            @endif
-                            {{ $user['name'] }} &nbsp;&nbsp;|&nbsp;&nbsp;<span class="repu">{{$totalRepu}}</span> Reputation
-                        </p>
-                    </div>
-                    <div class="col-md-9"></div>
-                </div>
-            </div>
-        </div>
-
-        <hr/>
-
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <h3 class="panel-title">Your links</h3>
@@ -69,7 +51,7 @@
                                         <span class="commentContent">{{ $comment['content'] }}</span>
                                         <hr/>
                                         <div class="onLink">
-                                            On link: <a class="link" href="{{$comment->link ? $comment->link->href : '#'}}">{{$comment->link['title']}}</a>
+                                            On link: <a class="link" href="{{$comment->link ? $comment->link->href : '#'}}" target="_blank">{{$link['title']}}</a>
                                         </div>
                                     </div>
                                     <div class="moreInfo col-md-2">
@@ -78,6 +60,19 @@
                                 </div>
                                 <hr/>
                             @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Your Repultaion</h3>
+                        </div>
+                        <div class="panel-body">
+                            Doing...
                         </div>
                     </div>
                 </div>

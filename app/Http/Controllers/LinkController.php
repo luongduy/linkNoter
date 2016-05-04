@@ -138,16 +138,16 @@ class LinkController extends Controller
 
 	public function increaseView(Request $request, Link $link) {
 		$link->viewed ++;
-		$link->save();	
-		return "";
+		$status = $link->save();	
+		return $status;
 	}
 	public function increaseVote(Request $request, Link $link) {
-		$this->links->increaseVote($link, $request->user());
-		return "";
+		$status = $this->links->increaseVote($link, $request->user());
+		return $status;
 	}
 	public function decreaseVote(Request $request, Link $link) {
-		$this->links->decreaseVote($link, $request->user());
-		return "";
+		$status = $this->links->decreaseVote($link, $request->user());
+		return $status;
 	}
 	public function deleteLink(Request $request, Link $link) {
 		$link->delete();
