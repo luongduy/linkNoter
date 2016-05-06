@@ -47,7 +47,7 @@
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/links') }}">Links</a></li>
                 </ul>
-                @if (in_array(Auth::user()->id, [1,2]))
+                @if (!Auth::guest() && in_array(Auth::user()->id, [1,2]))
                     <ul class="nav navbar-nav">
                         <li><a href="{{ url('/categories') }}">My Notes</a></li>
                     </ul>
