@@ -80,7 +80,14 @@ class LinkRepository
             $link->save();
         }
     }
-    public function searchLinks($searchString) {
-        return Link::where('title', 'LIKE', "%$searchString%")->get();
+    public function searchLinks($searchString, $sortedBy) {
+        switch ($sortedBy) {
+            case 'time':
+                return Link::where('title', 'LIKE', "%$searchString%")->orderBy('created_at', 'desc')->get();
+            case 'vote':
+                return Link::where('title', 'LIKE', "%$searchString%")->orderBy('voted', 'desc')->get();
+            case 'view':
+                return Link::where('title', 'LIKE', "%$searchString%")->orderBy('viewed', 'desc')->get();
+        }
     }
 }

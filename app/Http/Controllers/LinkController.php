@@ -167,11 +167,21 @@ class LinkController extends Controller
 		if ($request->searchText == null)
 			return redirect ('/links');
 		$searchString = $request->searchText;
-		$link_collection = $this->links->searchLinks($searchString);
-		$vote_arr = $this->links->getVotes($link_collection, $request->user());
+
+		$user = $request->user();
+		$link_collection_time = $this->links->searchLinks($searchString, 'time');
+		$vote_arr_time = $this->links->getVotes($link_collection_time, $user);
+		$link_collection_vote = $this->links->searchLinks($searchString, 'vote');
+		$vote_arr_vote = $this->links->getVotes($link_collection_vote, $user);
+		$link_collection_view = $this->links->searchLinks($searchString, 'view');
+		$vote_arr_view = $this->links->getVotes($link_collection_view, $user);
 		return view('links.index', [
-			'links' => $link_collection,
-			'votes' => $vote_arr
+			'links_sort_by_time' => $link_collection_time,
+			'votes_sort_by_time' => $vote_arr_time,
+			'links_sort_by_vote' => $link_collection_vote,
+			'votes_sort_by_vote' => $vote_arr_vote,
+			'links_sort_by_view' => $link_collection_view,
+			'votes_sort_by_view' => $vote_arr_view,
 		]);
 	}
 }
