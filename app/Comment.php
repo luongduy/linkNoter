@@ -2,6 +2,14 @@
 
 namespace App;
 
+/**
+ * Class Comment
+ * @package App
+ *
+ * @property int $user_id
+ * @property int $link_id
+ * @property string $content
+ */
 class Comment extends AppModel
 {
    public function user() {
