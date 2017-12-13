@@ -54,6 +54,7 @@ class UserController extends Controller
         $fileTargetTempName = "{$user->id}_temp.jpg";
 
         $file->move(public_path(UserRepository::AVATAR_PATH), $fileTargetTempName);
+        
 
         return response()->json([
             'fileInfo' => [

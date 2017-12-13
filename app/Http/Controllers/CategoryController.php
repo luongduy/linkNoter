@@ -36,13 +36,13 @@ class CategoryController extends Controller
     protected function getCategoryFromRequest(Request $request, $cid)
     {
         if (empty($cid)) {
-            $defaultCategory = $this->categories->forUser($request->user())->firstOrFail();
+            $defaultCategory = $this->categories->forUser($request->user())->first();
             if ($defaultCategory) {
                 return $defaultCategory;
             }
         }
 
-        return $this->categories->forUser($request->user())->where('id', $cid)->firstOrFail();
+        return $this->categories->forUser($request->user())->where('id', $cid)->first();
     }
 
     public function index(Request $request, $cid = null)
