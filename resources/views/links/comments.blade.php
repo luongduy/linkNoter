@@ -113,9 +113,9 @@
     <div class="col-sm-1">
         <div class="thumbnail">
             @if ($comment->user['avatar_path'])
-                <img id="myAvatar" class="img-responsive user-photo" src="{{url($comment->user->avatar_path)}}" />
+                <img id="myAvatar" class="img-responsive user-photo avatar-holder" src="{{url($comment->user->avatar_path)}}" />
             @else
-                <img id="myAvatar" class="img-responsive user-photo" src="{{ request()->getBaseUrl()}}/image/no-avatar.png" />
+                <img id="myAvatar" class="img-responsive user-photo avatar-holder" src="{{ request()->getBaseUrl()}}/image/no-avatar.png" />
             @endif    
         </div>
     </div>

@@ -15,8 +15,11 @@ function User() {
             success: function (res) {
                 if (res.status == true) {
                     $('#modalProfile').modal('hide');
-                    $('#myAvatar').attr('src', res.avatar + '?' +(new Date()).getTime());
-                    location.reload();
+                    $('.avatar-holder').attr('src', res.avatar + '?' +(new Date()).getTime());
+                    $.singletonNotify("Your avatar has been changed.", {
+                        position: "bottom center",
+                        className: "success"
+                    })
                 }
             }
         })
@@ -32,8 +35,8 @@ function User() {
                     data: _form.serialize(),
                     success: function (res) {
                         if (res.status == true) {
-                            location.reload();
-                            $.singletonNotify("Well done! Your changes are ... changed ;)", {
+                            // location.reload();
+                            $.singletonNotify("Your profile has been changed.", {
                                 position: "bottom center",
                                 className: "success"
                             })

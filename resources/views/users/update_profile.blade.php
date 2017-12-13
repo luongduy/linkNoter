@@ -10,9 +10,9 @@
                         <div class="col-md-3">
                             <a style="position: relative;" class="thumbnail" data-toggle="tooltip" data-placement="bottom" title="Change your avatar">
                                 @if ($user['avatar_path'])
-                                    <img id="myAvatar" class="img-responsive" src="{{ request()->getBaseUrl()}} {{ $user['avatar_path'] }}" />
+                                    <img id="myAvatar" class="img-responsive avatar-holder" src="{{ url($user['avatar_path']) }}?v=1" />
                                 @else
-                                    <img id="myAvatar" class="img-responsive" src="{{ request()->getBaseUrl()}}/image/no-avatar.png" />
+                                    <img id="myAvatar" class="img-responsive avatar-holder" src="{{ url('/image/no-avatar.png')}}" />
                                 @endif
                             </a>
                             <button type="button" class="btn btn-primary loadModalProfile">Upload new avatar</button>
